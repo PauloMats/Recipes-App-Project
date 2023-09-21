@@ -16,7 +16,7 @@ function Header() {
       <button data-testid="search-top-btn">
         Profile
       </button>
-      <button onClick={ toggleSearchBar } data-testid="toggle-search-btn">
+      <button onClick={toggleSearchBar} data-testid="toggle-search-btn">
         Toggle Search Bar
       </button>
       {isSearchBarVisible && <SearchBar />}
