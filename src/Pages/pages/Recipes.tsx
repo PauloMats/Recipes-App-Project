@@ -8,7 +8,7 @@ function Recipes() {
   const location = useLocation();
   const type = location.pathname === '/meals' ? 'meals' : 'drinks';
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
-  const { recipes, error } = useFetchRecipes(type, selectedCategory);
+  const { recipes } = useFetchRecipes(type, selectedCategory);
 
   const handleCategoryClick = useCallback((category: string) => {
     setSelectedCategory(category);
