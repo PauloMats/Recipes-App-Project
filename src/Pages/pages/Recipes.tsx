@@ -1,39 +1,28 @@
-import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useCallback, useState } from 'react';
 import RecipeCard from '../../components/RecipeCard';
-import { RecipeType } from '../../Types';
+import CategoryFilter from '../../components/CategoryFilter';
+import useFetchRecipes from '../../Hooks/useFetchRecipes';
 
 function Recipes() {
-  const [recipes, setRecipes] = useState<RecipeType[]>([]);
   const location = useLocation();
+  const type = location.pathname === '/meals' ? 'meals' : 'drinks';
+  const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
+  const { recipes, error } = useFetchRecipes(type, selectedCategory);
 
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      let endpoint: string;
-      if (location.pathname === '/meals') {
-        endpoint = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-      } else {
-        endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-      }
-
-      try {
-        const response = await fetch(endpoint);
-        const data = await response.json();
-        setRecipes(data.meals || data.drinks);
-      } catch (error) {
-        console.error('Failed to fetch recipes:', error);
-      }
-    };
-
-    fetchRecipes();
-  }, [location.pathname]);
+  const handleCategoryClick = useCallback((category: string) => {
+    setSelectedCategory(category);
+  }, [setSelectedCategory]);
 
   return (
     <div>
+      <CategoryFilter
+        type={ type }
+        onCategorySelect={ handleCategoryClick }
+      />
       {recipes.slice(0, 12).map((recipe, index) => (
         <RecipeCard
-          key={ recipe.idMeal
-           || recipe.idDrink }
+          key={ recipe.idMeal || recipe.idDrink }
           recipe={ recipe }
           index={ index }
         />
