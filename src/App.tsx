@@ -1,17 +1,17 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchBar from './components/SearchBar';
 import Header from './components/Header';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <><BrowserRouter>
+    <BrowserRouter>
       <Routes>
-        <Route path="/meals/:id-da-receita"></Route>
-        <Route path="/drinks/:id-da-receita>"></Route>
+        <Route path="/meals/:id-da-receita" />
+        <Route path="/drinks/:id-da-receita>" />
       </Routes>
       <div>
         <div className="meals">
@@ -19,7 +19,7 @@ function App() {
           <object
             className="rocksGlass"
             type="image/svg+xml"
-            data={rockGlass}
+            data={ rockGlass }
           >
             Glass
           </object>
@@ -28,7 +28,6 @@ function App() {
         </div>
       </div>
     </BrowserRouter>
-    </>
   );
 }
 
