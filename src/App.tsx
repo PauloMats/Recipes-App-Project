@@ -22,7 +22,6 @@ function App() {
         </object>
         <Header />
         <SearchBar />
-        <Footer />
       </div>
       <Routes>
         <Route path="/" element={ <Login /> } />

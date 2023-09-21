@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 type Props = {
-  onCategorySelect: (category: string) => void;
+  onCategorySelect: (category: string | null) => void;
   type: 'meals' | 'drinks';
 };
 
@@ -34,6 +34,12 @@ function CategoryFilter({ onCategorySelect, type }: Props) {
 
   return (
     <div>
+      <button
+        data-testid="All-category-filter"
+        onClick={ () => onCategorySelect(null) }
+      >
+        All
+      </button>
       {categories.map((category) => (
         <button
           key={ category }

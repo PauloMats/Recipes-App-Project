@@ -6,6 +6,7 @@ type FetchType = 'meals' | 'drinks';
 function useFetchRecipes(type: FetchType, category?: string) {
   const [recipes, setRecipes] = useState<RecipeType[]>([]);
   const [error, setError] = useState<Error | null>(null);
+  const [categories, setCategories] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -32,7 +33,23 @@ function useFetchRecipes(type: FetchType, category?: string) {
     fetchRecipes();
   }, [type, category]);
 
-  return { recipes, error };
+  const fetchCategories = async (result: FetchType) => {
+    const endpoint = result === 'meals'
+      ? 'https://www.themealdb.com/api/json/v1/1/list.php?c=list'
+      : 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
+
+    const response = await fetch(endpoint);
+    const data = await response.json();
+
+    setCategories(data[result].slice(0, 5)
+      .map((newCategory: any) => newCategory.strCategory));
+  };
+
+  useEffect(() => {
+    fetchCategories(type);
+  }, [type]);
+
+  return { recipes, error, categories };
 }
 
 export default useFetchRecipes;
