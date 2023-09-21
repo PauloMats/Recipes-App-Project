@@ -7,6 +7,7 @@ type Props = {
 
 function CategoryFilter({ onCategorySelect, type }: Props) {
   const [categories, setCategories] = useState<string[]>([]);
+  const [toggle, setToggle] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -32,11 +33,21 @@ function CategoryFilter({ onCategorySelect, type }: Props) {
     fetchCategories();
   }, [type]);
 
+  const handleCategoryToggle = (category: string) => {
+    if (category === toggle) {
+      onCategorySelect(null);
+      setToggle(null);
+    } else {
+      onCategorySelect(category);
+      setToggle(category);
+    }
+  };
+
   return (
     <div>
       <button
         data-testid="All-category-filter"
-        onClick={ () => onCategorySelect(null) }
+        onClick={ () => { onCategorySelect(null); setToggle(null); } }
       >
         All
       </button>
@@ -44,7 +55,8 @@ function CategoryFilter({ onCategorySelect, type }: Props) {
         <button
           key={ category }
           data-testid={ `${category}-category-filter` }
-          onClick={ () => onCategorySelect(category) }
+          onClick={ () => handleCategoryToggle(category) }
+          className={ category === toggle ? 'active' : '' }
         >
           {category}
         </button>
