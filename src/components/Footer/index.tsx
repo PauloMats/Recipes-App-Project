@@ -5,7 +5,7 @@ import './index.css';
 
 function Footer() {
   return (
-    <div data-testid="footer" id="footer">
+    <div data-testid="footer" id="footer" className="footer">
       <Link to="/drinks">
         <img
           className="footer-icon"
