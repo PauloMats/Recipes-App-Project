@@ -1,23 +1,15 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './components/Footer';
+import Login from './Pages/pages/Login';
+import Recipes from './Pages/pages/Meals';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" />
-        <Route path="/meals" />
-        <Route path="/drinks" />
-        <Route path="/profile" />
-        <Route path="/done-recipes" />
-        <Route path="/favorite-recipes" />
-      </Routes>
+    <>
       <div className="meals">
-        <span className="logo">TRYBE</span>
+        <span className="logo">Trybe</span>
         <object
           className="rocksGlass"
           type="image/svg+xml"
@@ -27,7 +19,15 @@ function App() {
         </object>
         <Footer />
       </div>
-    </BrowserRouter>
+      <Routes>
+        <Route path="/" element={ <Login /> } />
+        <Route path="/meals" element={ <Recipes /> } />
+        <Route path="/drinks" />
+        <Route path="/profile" />
+        <Route path="/done-recipes" />
+        <Route path="/favorite-recipes" />
+      </Routes>
+    </>
   );
 }
 
