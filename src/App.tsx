@@ -16,7 +16,7 @@ function App() {
         <object
           className="rocksGlass"
           type="image/svg+xml"
-          data={ rockGlass }
+          data={rockGlass}
         >
           Glass
         </object>
@@ -24,9 +24,9 @@ function App() {
         <SearchBar />
       </div>
       <Routes>
-        <Route path="/" element={ <Login /> } />
-        <Route path="/meals" element={ <Recipes /> } />
-        <Route path="/drinks" />
+        <Route path="/" element={<Login />} />
+        <Route path="/meals" element={<Recipes />} />
+        <Route path='/drinks' element={<Recipes />} />
         <Route path="/meals/:id-da-receita" />
         <Route path="/drinks/:id-da-receita>" />
         <Route path="/profile" />
