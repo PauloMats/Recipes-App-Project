@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipeCard from '../../components/RecipeCard';
-
-type Recipe = {
-  idMeal?: string;
-  strMeal?: string;
-  strMealThumb?: string;
-  idDrink?: string;
-  strDrink?: string;
-  strDrinkThumb?: string;
-};
+import { RecipeType } from '../../Types';
 
 function Recipes() {
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [recipes, setRecipes] = useState<RecipeType[]>([]);
   const location = useLocation();
 
   useEffect(() => {

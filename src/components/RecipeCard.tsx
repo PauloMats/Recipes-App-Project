@@ -1,14 +1,8 @@
 import React from 'react';
+import { RecipeType } from '../Types';
 
 type RecipeCardProps = {
-  recipe: {
-    idMeal?: string;
-    strMeal?: string;
-    strMealThumb?: string;
-    idDrink?: string;
-    strDrink?: string;
-    strDrinkThumb?: string;
-  };
+  recipe: RecipeType;
   index: number;
 };
 
