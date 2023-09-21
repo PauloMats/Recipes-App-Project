@@ -17,12 +17,16 @@ function App() {
         >
           Glass
         </object>
+        <Footer />
       </div>
       <Routes>
         <Route path="/" element={ <Login /> } />
         <Route path="/meals" element={ <Recipes /> } />
+        <Route path="/drinks" />
+        <Route path="/profile" />
+        <Route path="/done-recipes" />
+        <Route path="/favorite-recipes" />
       </Routes>
-
     </>
   );
 }
