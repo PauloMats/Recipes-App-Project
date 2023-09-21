@@ -3,7 +3,7 @@ import './App.css';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './Pages/pages/Login';
-import Recipes from './Pages/pages/Recipes'
+import Recipes from './Pages/pages/Recipes';
 import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -16,7 +16,7 @@ function App() {
         <object
           className="rocksGlass"
           type="image/svg+xml"
-          data={rockGlass}
+          data={ rockGlass }
         >
           Glass
         </object>
@@ -24,8 +24,8 @@ function App() {
         <SearchBar />
       </div>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/meals" element={<Recipes />} />
+        <Route path="/" element={ <Login /> } />
+        <Route path="/meals" element={ <Recipes /> } />
         <Route path="/drinks" />
         <Route path="/meals/:id-da-receita" />
         <Route path="/drinks/:id-da-receita>" />
