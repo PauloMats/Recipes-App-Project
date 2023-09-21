@@ -7,10 +7,12 @@ import Recipes from './Pages/pages/Recipes';
 import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   return (
     <>
+      <RecipeDetails />
       <div className="meals">
         <span className="logo">Trybe</span>
         <object
