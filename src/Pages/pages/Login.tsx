@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -17,11 +18,13 @@ function Login() {
     validateForm(email, newPassword);
   };
 
+  const navigate = useNavigate();
   const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     if (formValid) {
       localStorage.setItem('user', JSON.stringify({ email }));
     }
+    navigate('/meals');
   };
 
   const validateForm = (newEmail: string, newPassword: string | any[]) => {
