@@ -7,10 +7,20 @@ function Footer() {
   return (
     <div data-testid="footer" id="footer">
       <Link to="/drinks">
-        <img src={ drink } alt="drink icon" data-testid="drinks-bottom-btn" />
+        <img
+          className="footer-icon"
+          src={ drink }
+          alt="drink icon"
+          data-testid="drinks-bottom-btn"
+        />
       </Link>
       <Link to="/meals">
-        <img src={ meals } alt="meals icon" data-testid="meals-bottom-btn" />
+        <img
+          className="footer-icon"
+          src={ meals }
+          alt="meals icon"
+          data-testid="meals-bottom-btn"
+        />
       </Link>
     </div>
   );
