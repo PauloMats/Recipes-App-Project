@@ -5,7 +5,7 @@ import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import SearchBar from '../components/SearchBar';
 
-export const renderWithRouter = (ui: JSX.Element, { route = '/' } = {}) => {
+const renderWithRouter = (ui: JSX.Element, { route = '/' } = {}) => {
   window.history.pushState({}, '', route);
 
   return {
@@ -22,7 +22,7 @@ const testIds = {
 };
 
 describe('SearchBar Component', () => {
-  test('should render without errors', () => {
+  test('Renderiza sem erros', () => {
     render(
       <MemoryRouter>
         <SearchBar />
@@ -30,7 +30,7 @@ describe('SearchBar Component', () => {
     );
   });
 
-  test('should render input and buttons', () => {
+  test('renderiza o input e os botões', () => {
     const { getByTestId } = render(
       <MemoryRouter>
         <SearchBar />
@@ -41,7 +41,7 @@ describe('SearchBar Component', () => {
     });
   });
 
-  test('should update searchType state when radio button is clicked', () => {
+  test('Atualiza o search type quando um botão é clicado', () => {
     const { getByTestId } = render(
 
       <MemoryRouter>
@@ -53,7 +53,7 @@ describe('SearchBar Component', () => {
     expect(ingredientRadio).toBeChecked();
   });
 
-  test('handleSearchTypeChange updates searchType correctly', () => {
+  test('handleSearchTypeChange atualiza o searchType correctamente', () => {
     const { getByTestId } = render(
       <MemoryRouter>
         <SearchBar />
@@ -80,7 +80,7 @@ describe('SearchBar Component', () => {
     expect(firstLetterRadio).toBeChecked();
   });
 
-  test('handleSearchInputChange updates searchValue correctly', () => {
+  test('handleSearchInputChange atualiza o searchValue corretamente', () => {
     const { getByTestId } = render(
 
       <MemoryRouter>
@@ -181,7 +181,7 @@ describe('SearchBar Component', () => {
     errorMock.mockRestore();
   });
 
-  test('displays an alert when data.meals and data.drinks are both missing', async () => {
+  test('dispara um alerta quando data.meals e data.drinks estão ausentes', async () => {
     global.fetch = vi.fn(() => Promise.resolve({
       json: () => Promise.resolve({ drinks: null, meals: null }), // Return an empty object
     }));
@@ -207,7 +207,7 @@ describe('SearchBar Component', () => {
       );
     });
   });
-  test('navigates to the drinks details page when one drink is found', async () => {
+  test('navega para página de detalhes de um drink quando é encontrado apenas um resultado', async () => {
     const { user, getByTestId } = renderWithRouter(<SearchBar />);
 
     global.fetch = vi.fn(() => Promise.resolve({
