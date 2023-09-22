@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import SearchBar from './SearchBar'; // Certifique-se de importar o componente SearchBar corretamente
+import { useState } from 'react';
+import SearchBar from './SearchBar';
 
 function Header() {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);

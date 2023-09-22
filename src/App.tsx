@@ -6,7 +6,6 @@ import Login from './Pages/pages/Login';
 import Recipes from './Pages/pages/Recipes';
 import SearchBar from './components/SearchBar';
 import Header from './components/Header';
-import Footer from './components/Footer';
 
 function App() {
   return (
