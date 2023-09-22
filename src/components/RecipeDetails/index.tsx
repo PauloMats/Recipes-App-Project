@@ -25,17 +25,44 @@ function RecipeDetails() {
   }, [id]);
 
   function mealsIngredients(description: Meals) {
-    const ingredients = [1];
-    return ingredients;
+
+    }
+
+  function youtubeVideoLink(url: string) {
+    const youtubeLink = 'https://www.youtube.com/embed/';
+    const youtubeId = url.split('v=')[1];
+    return `${youtubeLink}${youtubeId}`;
   }
+
+  // function ordenate(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  //   event.preventDefault();
+
+  //   const saveOrder = formTwo.filter;
+  //   const sortOrder = formTwo.ordenar === 'DESC' ? -1 : 1;
+
+  //   const sortedResults = apiResults.sort((a, b) => {
+  //     const aValue = a[saveOrder];
+  //     const bValue = b[saveOrder];
+
+  //     if (aValue === 'unknown' || bValue === 'unknown') {
+  //       return aValue === 'unknown' ? 1 : -1; // Coloca 'unknown' por último
+  //     }
+
+  //     return (Number(aValue) - Number(bValue)) * sortOrder;
+  //   });
+
+  //   setApiResults([...sortedResults]);
+  // }
 
   return (
     meal.map((description, index) => (
       <div key={ description.idMeal }>
-        <image
+        <img
           data-testid="recipe-photo"
-          href={ description.strMealThumb }
+          src={ description.strMealThumb }
           aria-label={ description.strMeal }
+          width="350px"
+          height="350px"
         />
         <h1 data-testid="recipe-title">{ description.strMeal }</h1>
         <h3 data-testid="recipe-category">{ description.strCategory }</h3>
@@ -50,7 +77,7 @@ function RecipeDetails() {
           data-testid="video"
           width="420"
           height="315"
-          src={ description.strYoutube }
+          src={ youtubeVideoLink(description.strYoutube) }
         />
       </div>
     ))
