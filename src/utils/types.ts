@@ -1,11 +1,14 @@
-export type Meals = {
+export type RecipeType = {
   idMeal: string,
+  idDrink: string,
   strMeal: string,
+  strDrink: string,
   strDrinkAlternate: null | string,
   strCategory: string,
   strArea: string,
   strInstructions: string,
   strMealThumb: string,
+  strDrinkThumb: string,
   strTags: string,
   strYoutube: string,
   strIngredient1: string,
@@ -51,5 +54,22 @@ export type Meals = {
   strSource: null | string,
   strImageSource: null | string,
   strCreativeCommonsConfirmed: null | string,
-  dateModified: null | string
+  dateModified: null | string,
+  strVideo: null | string,
+  strIBA: null | string,
+  strAlcoholic: null | string,
+  strGlass: null | string,
+  strImageAttribution: null | string,
+};
+
+export type DoneRecipe = {
+  id: string,
+  type: string,
+  nationality: string,
+  category: string,
+  alcoholicOrNot: string,
+  name: string,
+  image: string,
+  doneDate: string,
+  tags: string,
 };

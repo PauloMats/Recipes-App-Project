@@ -6,13 +6,11 @@ import Login from './Pages/pages/Login';
 import Recipes from './Pages/pages/Recipes';
 import SearchBar from './components/SearchBar';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import RecipeDetails from './components/RecipeDetails';
 
 function App() {
   return (
     <>
-      <RecipeDetails />
       <div className="meals">
         <span className="logo">Trybe</span>
         <object
@@ -29,8 +27,8 @@ function App() {
         <Route path="/" element={ <Login /> } />
         <Route path="/meals" element={ <Recipes /> } />
         <Route path="/drinks" element={ <Recipes /> } />
-        <Route path="/meals/:id-da-receita" />
-        <Route path="/drinks/:id-da-receita>" />
+        <Route path="/meals/:id" element={ <RecipeDetails /> } />
+        <Route path="/drinks/:id" element={ <RecipeDetails /> } />
         <Route path="/profile" />
         <Route path="/done-recipes" />
         <Route path="/favorite-recipes" />
