@@ -1,4 +1,4 @@
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
 import fetchAPi from '../../utils/fetchApi';
@@ -12,10 +12,12 @@ function RecipeDetails() {
   const location = useLocation();
   const [recipe, setRecipe] = useState<RecipeType[]>([]);
   const [recomendations, setRecomendations] = useState<RecipeType[]>([]);
-  const [btnStart, setBtnStart] = useState<boolean>(true);
+  const [btnStatus, setBtnStatus] = useState<boolean>(true);
+  const [isShare, setIsShare] = useState<boolean>(false);
+  const isMeal = location.pathname.includes('/meals/');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const isMeal = location.pathname.includes('/meals/');
     async function getRecomendations() {
       if (isMeal) {
         const recomendationsDrink = await fetchAPi('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
@@ -28,138 +30,95 @@ function RecipeDetails() {
     const endpoint = isMeal ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}` : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
     async function getMeal() {
       const recipeDescription = await fetchAPi(endpoint);
-      console.log(recipeDescription);
+      // console.log(recipeDescription);
       setRecipe(recipeDescription);
     }
+    const inProgressRecipes = JSON
+      .parse(localStorage.getItem('inProgressRecipes') || '{}');
+    const category = isMeal ? 'meals' : 'drinks';
+    setBtnStatus(!!(
+      inProgressRecipes[category] && id && inProgressRecipes[category][id]
+    ));
+
     getMeal();
     getRecomendations();
-  }, [location.pathname, id]);
-
-  // function recipeIngredients(description: RecipeType) {
-  //   const ingredients = Object.entries(description)
-  //     .filter((entry) => entry[0].includes('strIngredient') && entry[1])
-  //     .map((entry) => entry[1]);
-
-  //   const measures = Object.entries(description)
-  //     .filter((entry) => entry[0].includes('strMeasure') && entry[1])
-  //     .map((entry) => entry[1]);
-
-  //   const ingredientsAndMeasures = ingredients.map((ingredient, index) => (
-  //     `${ingredient} - ${measures[index]}`
-  //   ));
-
-  //   return ingredientsAndMeasures;
-  // }
-
-  // function youtubeVideoLink(url: string) {
-  //   const youtubeLink = 'https://www.youtube.com/embed/';
-  //   const youtubeId = url.split('v=')[1];
-  //   return `${youtubeLink}${youtubeId}`;
-  // }
+  }, [isMeal, id]);
 
   function handleButton() {
-    setBtnStart(false);
-    console.log('teste');
+    setBtnStatus(true);
+    const data = JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
+    const category = isMeal ? 'meals' : 'drinks';
+
+    const ingredients = recipe.map((description) => recipeIngredients(description));
+
+    data[category] = {
+      ...data[category],
+      [id || '']: ingredients,
+    };
+
+    localStorage.setItem('inProgressRecipes', JSON.stringify(data));
+    navigate(`${location.pathname}/in-progress`);
+  }
+  function handleShare() {
+    navigator.clipboard.writeText(`http://localhost:3000${location.pathname}`);
+    setIsShare(true);
   }
 
-  if (location.pathname.includes('/meals/')) {
-    return (
-      recipe.map((description) => (
-        <div key={ description.idMeal }>
-          <img
-            data-testid="recipe-photo"
-            src={ description.strMealThumb }
-            aria-label={ description.strMeal }
-            width="350px"
-            height="350px"
+  return (
+    recipe.map((description) => (
+      <div key={ isMeal ? description.idMeal : description.idDrink }>
+        {isShare && <span>Link copied!</span>}
+        <img
+          data-testid="recipe-photo"
+          src={ isMeal ? description.strMealThumb : description.strDrinkThumb }
+          aria-label={ isMeal ? description.strMeal : description.strDrink }
+          width="350px"
+          height="350px"
+        />
+        <button data-testid="share-btn" onClick={ handleShare }> Compartilhar </button>
+        <button data-testid="favorite-btn"> Favoritar </button>
+        <h1
+          data-testid="recipe-title"
+        >
+          { isMeal ? description.strMeal : description.strDrink }
+        </h1>
+        <h3
+          data-testid="recipe-category"
+        >
+          { isMeal ? description.strCategory : description.strAlcoholic }
+        </h3>
+        { recipeIngredients(description).map((item, index) => (
+          <h6 key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
+            { item }
+          </h6>
+        )) }
+        <p data-testid="instructions">{ description.strInstructions }</p>
+        { isMeal && (
+          <iframe
+            title="YouTube Video"
+            data-testid="video"
+            width="420"
+            height="315"
+            src={ youtubeVideoLink(description.strYoutube) }
           />
-          <h1 data-testid="recipe-title">{ description.strMeal }</h1>
-          <h3 data-testid="recipe-category">{ description.strCategory }</h3>
-          { recipeIngredients(description).map((item, index) => (
-            <h6
-              key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              { item }
-            </h6>
+        )}
+        <Carousel>
+          { recomendations.slice(0, 6).map((recommendation, index) => (
+            <Carousel.Item key={ index }>
+              <RecommendationCard recipe={ recommendation } index={ index } />
+            </Carousel.Item>
           )) }
-          <p data-testid="instructions">{description.strInstructions}</p>
-          {location.pathname.includes('/meals/') && (
-            <iframe
-              title="YouTube Video"
-              data-testid="video"
-              width="420"
-              height="315"
-              src={ youtubeVideoLink(description.strYoutube) }
-            />
-          )}
-          <Carousel>
-            { recomendations.slice(0, 6).map((recommendation, index) => (
-              <Carousel.Item key={ index }>
-                <RecommendationCard
-                  key={ recommendation.idMeal }
-                  recipe={ recommendation }
-                  index={ index }
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
-          <button
-            className="footer"
-            data-testid="start-recipe-btn"
-            onClick={ handleButton }
-          >
-            {btnStart ? 'Start Recipe' : 'Continue Recipe' }
-          </button>
-        </div>
-      ))
-    );
-  }
-
-  if (location.pathname.includes('/drinks/')) {
-    return (
-      recipe.map((description) => (
-        <div key={ description.idDrink }>
-          <img
-            data-testid="recipe-photo"
-            src={ description.strDrinkThumb }
-            aria-label={ description.strDrink }
-            width="350px"
-            height="350px"
-          />
-          <h1 data-testid="recipe-title">{ description.strDrink }</h1>
-          <h3 data-testid="recipe-category">{ description.strAlcoholic}</h3>
-          { recipeIngredients(description).map((item, index) => (
-            <h6
-              key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              { item }
-            </h6>
-          )) }
-          <p data-testid="instructions">{description.strInstructions}</p>
-          <Carousel>
-            { recomendations.slice(0, 6).map((recommendation, index) => (
-              <Carousel.Item key={ index }>
-                <RecommendationCard
-                  key={ recommendation.idDrink }
-                  recipe={ recommendation }
-                  index={ index }
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
-          <button
-            className="footer"
-            data-testid="start-recipe-btn"
-            onClick={ handleButton }
-          >
-            {btnStart ? 'Start Recipe' : 'Continue Recipe' }
-          </button>
-        </div>
-      ))
-    );
-  }
+        </Carousel>
+        <button
+          className="footer"
+          data-testid="start-recipe-btn"
+          onClick={ handleButton }
+        >
+          { btnStatus ? 'Continue Recipe' : 'Start Recipe' }
+        </button>
+      </div>
+    ))
+  );
 }
 
 export default RecipeDetails;
