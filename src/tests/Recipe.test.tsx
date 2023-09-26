@@ -9,12 +9,12 @@ import CategoryFilter from '../components/CategoryFilter';
 import RecipeCard from '../components/RecipeCard';
 import useFetchRecipes from '../Hooks/useFetchRecipes';
 
-test('renders Recipes component', () => {
+test('renderiza o componente Recipe', () => {
   renderWithRouter(<Recipes />, { route: '/meals' });
 });
 
 // Teste para o componente RecipeCard
-test('renders RecipeCard component', () => {
+test('renderiza o componente RecipeCard', () => {
   const recipe = {
     idMeal: '1',
     strMeal: 'Spaghetti',
@@ -23,7 +23,7 @@ test('renders RecipeCard component', () => {
   renderWithRouter(<RecipeCard recipe={ recipe } index={ 0 } />);
 });
 
-test('renders CategoryFilter component', () => {
+test('renderiza o componente CategoryFilter', () => {
   const onCategorySelect = vi.fn();
 
   renderWithRouter(
@@ -32,7 +32,7 @@ test('renders CategoryFilter component', () => {
 });
 
 describe('handleCategoryClick', () => {
-  it('should set selectedCategory to "All" when "All" button is clicked', () => {
+  it('atualiza selectedCategory para "All" quando o botão "All" é clicado', () => {
     const { getByTestId } = renderWithRouter(<Recipes />);
     const allButton = getByTestId('All-category-filter');
 
@@ -44,7 +44,7 @@ describe('handleCategoryClick', () => {
 });
 
 describe('handleCategoryClick', () => {
-  it('should clear selectedCategory when "All" button is clicked after selecting a category', async () => {
+  it('limpa o selectedCategory quando o botão "All" é clicado após selecionar a categoria', async () => {
     const { getByTestId } = renderWithRouter(<Recipes />);
     const beefButton = await waitFor(() => getByTestId('Ordinary Drink-category-filter'));
 
