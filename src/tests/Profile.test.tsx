@@ -1,12 +1,12 @@
 import { screen } from '@testing-library/dom';
-import { renderWithRouter } from '../Helper/renderWihtRouter';
+import renderWithRouter  from '../Helper/renderWihtRouter';
 import Profile from '../Pages/pages/Profile';
 
 const profId = 'profile-top-btn';
 const buttonInputId = 'search-top-btn';
 
 describe('Testa o componente Profile', () => {
-  test('Verifica todos os botões são exibidos na tela e inclusive o email', () => {
+  test('Verifica todos os botões são exibidos na tela e inclusive o e', () => {
     localStorage.setItem('user', JSON.stringify({ email: 'teste@teste.com' }));
     renderWithRouter(<Profile />, { route: '/profile' });
 
