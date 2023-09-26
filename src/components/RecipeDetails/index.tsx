@@ -6,6 +6,9 @@ import { RecipeType } from '../../utils/types';
 import RecommendationCard from '../RecomendationsCard';
 import 'bootstrap/dist/css/bootstrap.css';
 import { recipeIngredients, youtubeVideoLink } from '../../utils/recipeDetailsUtils';
+import { FavoriteRecipe } from '../../utils/favoriteRecipes';
+import heart from '../../images/whiteHeartIcon.svg';
+import heartFull from '../../images/blackHeartIcon.svg';
 
 function RecipeDetails() {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +17,8 @@ function RecipeDetails() {
   const [recomendations, setRecomendations] = useState<RecipeType[]>([]);
   const [btnStatus, setBtnStatus] = useState<boolean>(true);
   const [isShare, setIsShare] = useState<boolean>(false);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
   const isMeal = location.pathname.includes('/meals/');
   const navigate = useNavigate();
 
@@ -39,6 +44,9 @@ function RecipeDetails() {
     setBtnStatus(!!(
       inProgressRecipes[category] && id && inProgressRecipes[category][id]
     ));
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    const isFav = favoriteRecipes.some((recipeF: any) => recipeF.id === id);
+    setIsFavorite(isFav);
 
     getMeal();
     getRecomendations();
@@ -63,6 +71,26 @@ function RecipeDetails() {
     navigator.clipboard.writeText(`http://localhost:3000${location.pathname}`);
     setIsShare(true);
   }
+  function handleFavorite() {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    if (isFavorite) {
+      const newFavorite = favoriteRecipes.filter((recipeF: any) => recipeF.id !== id);
+      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorite));
+    } else {
+      const favorite = {
+        id,
+        type: isMeal ? 'meal' : 'drink',
+        nationality: recipe[0].strArea || '',
+        category: recipe[0].strCategory || '',
+        alcoholicOrNot: recipe[0].strAlcoholic || '',
+        name: recipe[0].strMeal || recipe[0].strDrink,
+        image: recipe[0].strMealThumb || recipe[0].strDrinkThumb,
+      };
+      localStorage
+        .setItem('favoriteRecipes', JSON.stringify([...favoriteRecipes, favorite]));
+    }
+    setIsFavorite(!isFavorite);
+  }
 
   return (
     recipe.map((description) => (
@@ -75,8 +103,14 @@ function RecipeDetails() {
           width="350px"
           height="350px"
         />
-        <button data-testid="share-btn" onClick={ handleShare }> Compartilhar </button>
-        <button data-testid="favorite-btn"> Favoritar </button>
+        <button data-testid="share-btn" onClick={ handleShare }>Compartilhar</button>
+        <button onClick={ handleFavorite }>
+          <img
+            data-testid="favorite-btn"
+            src={ isFavorite ? heartFull : heart }
+            alt="favorite"
+          />
+        </button>
         <h1
           data-testid="recipe-title"
         >
