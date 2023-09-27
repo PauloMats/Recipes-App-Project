@@ -6,7 +6,6 @@ import { RecipeType } from '../../utils/types';
 import RecommendationCard from '../RecomendationsCard';
 import 'bootstrap/dist/css/bootstrap.css';
 import { recipeIngredients, youtubeVideoLink } from '../../utils/recipeDetailsUtils';
-import { FavoriteRecipe } from '../../utils/favoriteRecipes';
 import heart from '../../images/whiteHeartIcon.svg';
 import heartFull from '../../images/blackHeartIcon.svg';
 

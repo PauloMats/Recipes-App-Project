@@ -8,6 +8,7 @@ import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import RecipeDetails from './components/RecipeDetails';
 import RecipeInProgress from './Pages/pages/RecipeInProgress';
+import FavoriteRecipes from './Pages/pages/FavoriteRecipes';
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
         <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
         <Route path="/profile" />
         <Route path="/done-recipes" />
-        <Route path="/favorite-recipes" />
+        <Route path="/favorite-recipes" element={ <FavoriteRecipes /> } />
       </Routes>
     </>
   );
