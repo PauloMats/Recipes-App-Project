@@ -8,7 +8,6 @@ function FavoriteRecipes() {
   const updateFavorites = () => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
     setFavorite(favoriteRecipes);
-    console.log('favoriteRecipes', favoriteRecipes);
   };
 
   useEffect(() => {

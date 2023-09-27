@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import heartFull from '../images/blackHeartIcon.svg';
 import share from '../images/shareIcon.svg';
 import { FavoriteRecipe } from '../utils/favoriteRecipes';
@@ -12,9 +12,11 @@ type FavoriteCardProps = {
 
 function FavoriteCard({ recipe, index, updateFavorites }: FavoriteCardProps) {
   const [isFavorite, setIsFavorite] = useState(true);
-  const location = useLocation();
+  const [isShare, setIsShare] = useState<boolean>(false);
+
   const {
     id,
+    type,
     nationality,
     category,
     alcoholicOrNot,
@@ -22,8 +24,11 @@ function FavoriteCard({ recipe, index, updateFavorites }: FavoriteCardProps) {
     image,
   } = recipe;
 
+  const linkPath = `/${type}s/${id}`;
+
   function handleShare() {
-    navigator.clipboard.writeText(`http://localhost:3000${location.pathname}`);
+    navigator.clipboard.writeText(`http://localhost:3000${linkPath}`);
+    setIsShare(true);
   }
 
   const handleFavorite = () => {
@@ -37,15 +42,19 @@ function FavoriteCard({ recipe, index, updateFavorites }: FavoriteCardProps) {
 
   return (
     <div>
-      <img
-        src={ image }
-        alt={ name }
-        data-testid={ `${index}-horizontal-image` }
-      />
+      <Link to={ linkPath }>
+        <img
+          src={ image }
+          alt={ name }
+          data-testid={ `${index}-horizontal-image` }
+        />
+      </Link>
       <span data-testid={ `${index}-horizontal-top-text` }>
-        {`${nationality || ''} - ${category || alcoholicOrNot || ''}`}
+        {`${nationality || ''} - ${category} - ${alcoholicOrNot || ''}`}
       </span>
-      <span data-testid={ `${index}-horizontal-name` }>{name}</span>
+      <Link to={ linkPath }>
+        <span data-testid={ `${index}-horizontal-name` }>{name}</span>
+      </Link>
       <button onClick={ handleShare }>
         <img
           src={ share }
@@ -60,6 +69,7 @@ function FavoriteCard({ recipe, index, updateFavorites }: FavoriteCardProps) {
           data-testid={ `${index}-horizontal-favorite-btn` }
         />
       </button>
+      {isShare && <span>Link copied!</span>}
     </div>
   );
 }

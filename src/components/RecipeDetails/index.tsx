@@ -34,7 +34,6 @@ function RecipeDetails() {
     const endpoint = isMeal ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}` : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
     async function getMeal() {
       const recipeDescription = await fetchAPi(endpoint);
-      // console.log(recipeDescription);
       setRecipe(recipeDescription);
     }
     const inProgressRecipes = JSON
