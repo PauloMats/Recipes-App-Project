@@ -4,6 +4,7 @@ import RecipeCard from '../../components/RecipeCard';
 import CategoryFilter from '../../components/CategoryFilter';
 import useFetchRecipes from '../../Hooks/useFetchRecipes';
 import Footer from '../../components/Footer';
+import Header from '../../components/Header';
 
 function Recipes() {
   const { pathname } = useLocation();
