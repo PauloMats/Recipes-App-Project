@@ -8,12 +8,13 @@ import SearchBar from './components/SearchBar';
 import Header from './components/Header';
 import RecipeDetails from './components/RecipeDetails';
 import RecipeInProgress from './Pages/pages/RecipeInProgress';
+import Profile from './Pages/pages/Profile';
 
 function App() {
   return (
     <>
       <div className="meals">
-        <span className="logo">Trybe</span>
+        <span className="logo">Receitas APP</span>
         <object
           className="rocksGlass"
           type="image/svg+xml"
@@ -23,6 +24,7 @@ function App() {
         </object>
         <Header />
         <SearchBar />
+        <Profile />
       </div>
       <Routes>
         <Route path="/" element={ <Login /> } />
@@ -32,7 +34,7 @@ function App() {
         <Route path="/drinks/:id" element={ <RecipeDetails /> } />
         <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
         <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
-        <Route path="/profile" />
+        <Route path="/Profile" element={ <Profile /> } />
         <Route path="/done-recipes" />
         <Route path="/favorite-recipes" />
       </Routes>

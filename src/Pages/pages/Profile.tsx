@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Profile() {
-  const [userEmail, setUserEmail] = useState<string>('');
+  const [userEmail, setUserEmail] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function Profile() {
 
   return (
     <main>
-      <p data-testid="profile-email">{userEmail}</p>
+      {userEmail && <p data-testid="profile-email">{userEmail}</p>}
       <button
         data-testid="profile-done-btn"
         onClick={ () => handleNavigation('/done-recipes') }
