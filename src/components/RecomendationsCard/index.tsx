@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import { RecipeType } from '../utils/types';
+import { RecipeType } from '../../utils/types';
 
 type RecipeCardProps = {
   recipe: RecipeType;
   index: number;
 };
 
-function RecipeCard({ recipe, index }: RecipeCardProps) {
+function RecommendationCard({ recipe, index }: RecipeCardProps) {
   const recipeName = recipe.strMeal || recipe.strDrink;
   const recipeThumb = recipe.strMealThumb || recipe.strDrinkThumb;
 
@@ -16,13 +16,13 @@ function RecipeCard({ recipe, index }: RecipeCardProps) {
 
   return (
     <Link to={ linkPath } style={ { textDecoration: 'none', color: 'inherit' } }>
-      <div data-testid={ `${index}-recipe-card` }>
+      <div data-testid={ `${index}-recommendation-card` }>
         <img
           src={ recipeThumb }
           alt={ recipeName }
-          data-testid={ `${index}-card-img` }
+          width="200px"
         />
-        <span data-testid={ `${index}-card-name` }>
+        <span data-testid={ `${index}-recommendation-title` }>
           {recipeName}
         </span>
       </div>
@@ -30,4 +30,4 @@ function RecipeCard({ recipe, index }: RecipeCardProps) {
   );
 }
 
-export default RecipeCard;
+export default RecommendationCard;
