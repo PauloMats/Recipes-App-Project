@@ -81,7 +81,7 @@ function RecipeDetails() {
         id,
         type: isMeal ? 'meal' : 'drink',
         nationality: recipe[0].strArea || '',
-        category: recipe[0].strCategory || '',
+        category: recipe[0].strCategory,
         alcoholicOrNot: recipe[0].strAlcoholic || '',
         name: recipe[0].strMeal || recipe[0].strDrink,
         image: recipe[0].strMealThumb || recipe[0].strDrinkThumb,

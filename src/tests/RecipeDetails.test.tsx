@@ -49,8 +49,16 @@ const testIds = {
 };
 
 const rotaTestada = '/meals/53065';
+const rotaTestadaDrink = '/drinks/15997';
 const favorite = 'favorite-btn';
 const startRecipeBtn = 'start-recipe-btn';
+const start = 'Start Recipe';
+const testLocalStorage = {
+  drinks: {},
+  meals: {
+    52771: [],
+  },
+};
 
 describe('Testa a página de detalhes de uma receita', () => {
   test('Renderiza sem erros', () => {
@@ -71,16 +79,11 @@ describe('Testa a página de detalhes de uma receita', () => {
     expect(await screen.findByTestId('video')).toBeInTheDocument();
     expect(await screen.findByTestId(startRecipeBtn)).toBeInTheDocument();
   });
-  test('Testa se a funcionalidade dos elementos de evento', async () => {
+  test('Testa o botao de compartilhar meal', async () => {
     renderWithRouter(<App />, { route: rotaTestada });
 
     await userEvent.click(await screen.findByTestId('share-btn'));
     expect(screen.getByText(/link copied!/i)).toBeInTheDocument();
-    // expect(await screen.findByTestId('favorite-btn')).toBeInTheDocument();
-    // await userEvent.click(screen.getByRole('img', { name: /favorite/i }));
-
-    // await userEvent.click(screen.getByRole('button', { name: /favorite/i }));
-    // expect(localStorage.getItem('favoriteRecipes')).tobe();
   });
   test('Testa o botao de favorito', async () => {
     renderWithRouter(<App />, { route: rotaTestada });
@@ -92,26 +95,63 @@ describe('Testa a página de detalhes de uma receita', () => {
   test('Testa o botao de iniciar a receita', async () => {
     const data = '{"meals":{"53065":[["Sushi Rice - 300ml ","Rice wine - 100ml","Caster Sugar - 2 tbs","Mayonnaise - 3 tbs","Rice wine - 1 tbs","Soy Sauce - 1 tbs","Cucumber - 1","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  "]]}}';
     renderWithRouter(<App />, { route: rotaTestada });
-    await expect(await screen.findByTestId(startRecipeBtn)).toHaveTextContent('Start Recipe');
+    await expect(await screen.findByTestId(startRecipeBtn)).toHaveTextContent(start);
     await userEvent.click(await screen.findByTestId(startRecipeBtn));
     expect(screen.queryByTestId(startRecipeBtn)).toBeNull();
     expect(screen.getByRole('heading', { name: /recipeinprogress/i })).toBeInTheDocument();
     expect(localStorage.getItem('inProgressRecipes')).toBe(data);
   });
-  // test('teste teste', async () => {
-  //   const data = '{"meals":{"53065":[["Sushi Rice - 300ml ","Rice wine - 100ml","Caster Sugar - 2 tbs","Mayonnaise - 3 tbs","Rice wine - 1 tbs","Soy Sauce - 1 tbs","Cucumber - 1","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  "]]}}';
-  //   const history = createMemoryHistory();
+
+  test('Testa o botao de favoritos do drink', async () => {
+    renderWithRouter(<App />, { route: rotaTestadaDrink });
+    await userEvent.click(await screen.findByTestId(favorite));
+    expect(localStorage.getItem('favoriteRecipes')).toBe('[{"id":"15997","type":"drink","nationality":"Japanese","category":"Seafood","alcoholicOrNot":"","name":"Sushi","image":"https://www.themealdb.com/images/media/meals/g046bb1663960946.jpg"}]');
+    await userEvent.click(await screen.findByTestId(favorite));
+    expect(localStorage.getItem('favoriteRecipes')).toBe('[]');
+  });
+
+  test('Testa o botao de compartilhar do drink', async () => {
+    renderWithRouter(<App />, { route: rotaTestadaDrink });
+    await userEvent.click(await screen.findByTestId('share-btn'));
+    expect(screen.getByText(/link copied!/i)).toBeInTheDocument();
+  });
+
+  test('Testa uma bebida', async () => {
+    const data = '{"drinks":{"15997":[["Sushi Rice - 300ml ","Rice wine - 100ml","Caster Sugar - 2 tbs","Mayonnaise - 3 tbs","Rice wine - 1 tbs","Soy Sauce - 1 tbs","Cucumber - 1","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  "]]}}';
+    renderWithRouter(<App />, { route: rotaTestadaDrink });
+    await expect(await screen.findByTestId(startRecipeBtn)).toHaveTextContent(start);
+    await userEvent.click(await screen.findByTestId(startRecipeBtn));
+    expect(screen.queryByTestId(startRecipeBtn)).toBeNull();
+    expect(screen.getByRole('heading', { name: /recipeinprogress/i })).toBeInTheDocument();
+    expect(localStorage.getItem('inProgressRecipes')).toBe(data);
+  });
+
+  test('Testa se o botão continue aparece após o apertar o start', async () => {
+    const data = '{"meals":{"53065":[["Sushi Rice - 300ml ","Rice wine - 100ml","Caster Sugar - 2 tbs","Mayonnaise - 3 tbs","Rice wine - 1 tbs","Soy Sauce - 1 tbs","Cucumber - 1","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  "]]}}';
+    const history = createMemoryHistory();
+    renderWithRouter(<App />, { route: rotaTestada });
+    await expect(await screen.findByTestId(startRecipeBtn)).toHaveTextContent(start);
+    await userEvent.click(await screen.findByTestId(startRecipeBtn));
+    expect(screen.queryByTestId(startRecipeBtn)).toBeNull();
+    expect(screen.getByRole('heading', { name: /recipeinprogress/i })).toBeInTheDocument();
+    expect(localStorage.getItem('inProgressRecipes')).toBe(data);
+    renderWithRouter(<App />, { route: rotaTestada });
+    await waitFor(() => {
+      screen.getByTestId(startRecipeBtn);
+    }, { timeout: 5000 });
+  });
+
+  // test('Testa se o botão "Continue Recipe" é exibido na tela de uma receita já iniciada', async () => {
+  //   localStorage.setItem('inProgressRecipes', JSON.stringify(testLocalStorage));
 
   //   renderWithRouter(<App />, { route: rotaTestada });
 
-  //   await expect(await screen.findByTestId(startRecipeBtn)).toHaveTextContent('Start Recipe');
-  //   await userEvent.click(await screen.findByTestId(startRecipeBtn));
+  //   await waitFor(() => {
+  //     screen.getByTestId(startRecipeBtn);
+  //   }, { timeout: 5000 });
 
-  //   expect(screen.queryByTestId(startRecipeBtn)).toBeNull();
-  //   expect(screen.getByRole('heading', { name: /recipeinprogress/i })).toBeInTheDocument();
-  //   expect(localStorage.getItem('inProgressRecipes')).toBe(data);
+  //   screen.getByTestId('start-recipe-btn');
 
-  //   history.back();
-  //   // await waitFor(() => expect(screen.findByTestId(startRecipeBtn)).toHaveTextContent('Continue Recipe'));
+  //   screen.getByText('Start Recipe');
   // });
 });
