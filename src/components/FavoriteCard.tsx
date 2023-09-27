@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import heartFull from '../images/blackHeartIcon.svg';
 import share from '../images/shareIcon.svg';
 import { FavoriteRecipe } from '../utils/favoriteRecipes';
@@ -13,6 +13,7 @@ type FavoriteCardProps = {
 function FavoriteCard({ recipe, index, updateFavorites }: FavoriteCardProps) {
   const [isFavorite, setIsFavorite] = useState(true);
   const [isShare, setIsShare] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const {
     id,
@@ -40,21 +41,34 @@ function FavoriteCard({ recipe, index, updateFavorites }: FavoriteCardProps) {
     updateFavorites();
   };
 
+  const handleDetail = () => {
+    navigate(linkPath);
+  };
+
   return (
     <div>
-      <Link to={ linkPath }>
+      <button
+        onClick={ handleDetail }
+        style={ {
+          backgroundColor: 'transparent',
+          border: 'none',
+          padding: 0,
+          outline: 'none',
+        } }
+      >
         <img
           src={ image }
           alt={ name }
           data-testid={ `${index}-horizontal-image` }
+          style={ { width: '150px' } }
         />
+      </button>
+      <Link to={ linkPath }>
+        <span data-testid={ `${index}-horizontal-name` }>{name}</span>
       </Link>
       <span data-testid={ `${index}-horizontal-top-text` }>
         {`${nationality || ''} - ${category} - ${alcoholicOrNot || ''}`}
       </span>
-      <Link to={ linkPath }>
-        <span data-testid={ `${index}-horizontal-name` }>{name}</span>
-      </Link>
       <button onClick={ handleShare }>
         <img
           src={ share }
