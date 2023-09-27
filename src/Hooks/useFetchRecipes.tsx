@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { RecipeType } from '../Types';
+import { RecipeType } from '../utils/types';
 
 type FetchType = 'meals' | 'drinks';
 

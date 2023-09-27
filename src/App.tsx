@@ -15,6 +15,8 @@ import { FavoriteSearchLayout } from './Helper/Layouts/FavoriteSearchLayout';
 import { FullHeaderLayout } from './Helper/Layouts/FullHeaderLayout';
 import { MealsLayout } from './Helper/Layouts/MealsLayout';
 import { ProfileSearchLayout } from './Helper/Layouts/ProfileSeachLayout';
+import RecipeDetails from './components/RecipeDetails';
+import RecipeInProgress from './Pages/pages/RecipeInProgress';
 
 function App() {
   const location = useLocation();
@@ -41,8 +43,10 @@ function App() {
         <Route path="/drinks" element={ <DrinksLayout /> }>
           <Route index element={ <Recipes /> } />
         </Route>
-        <Route path="/meals/:id-da-receita" />
-        <Route path="/drinks/:id-da-receita>" />
+        <Route path="/meals/:id" element={ <RecipeDetails /> } />
+        <Route path="/drinks/:id" element={ <RecipeDetails /> } />
+        <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
+        <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
         <Route path="/profile" element={ <ProfileSearchLayout /> }>
           <Route index element={ <Profile /> } />
         </Route>
