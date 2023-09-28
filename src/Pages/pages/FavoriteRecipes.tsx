@@ -4,6 +4,8 @@ import FavoriteCard from '../../components/FavoriteCard';
 function FavoriteRecipes() {
   const [favorite, setFavorite] = useState([]);
   const [filter, setFilter] = useState('All');
+  const [isFavorite, setIsFavorite] = useState<boolean[]>([]);
+  const [isShare, setIsShare] = useState<boolean[]>([]);
 
   const updateFavorites = () => {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
@@ -17,6 +19,25 @@ function FavoriteRecipes() {
   const filtered = favorite.filter(
     (recipe: any) => (filter === 'All' ? true : recipe.type === filter.toLowerCase()),
   );
+
+  const handleShare = (index: number, linkPath: string) => {
+    navigator.clipboard.writeText(`http://localhost:3000${linkPath}`);
+    const newIsShare = [...isShare];
+    newIsShare[index] = true;
+    setIsShare(newIsShare);
+  };
+
+  const handleFavorite = (index: number, id: string) => {
+    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    const removeFavorite = favoriteRecipes.filter((recipeF: any) => recipeF.id !== id);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(removeFavorite));
+
+    const newIsFavorite = [...isFavorite];
+    newIsFavorite[index] = !newIsFavorite[index];
+    setIsFavorite(newIsFavorite);
+
+    updateFavorites();
+  };
 
   return (
     <div>
@@ -46,7 +67,9 @@ function FavoriteRecipes() {
           key={ index }
           recipe={ recipe }
           index={ index }
-          updateFavorites={ updateFavorites }
+          handleShare={ () => handleShare(index, `/${recipe.type}s/${recipe.id}`) }
+          handleFavorite={ () => handleFavorite(index, recipe.id) }
+          isShare={ isShare[index] }
         />
       ))}
     </div>

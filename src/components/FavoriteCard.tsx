@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import heartFull from '../images/blackHeartIcon.svg';
 import share from '../images/shareIcon.svg';
 import { FavoriteRecipe } from '../utils/favoriteRecipes';
@@ -7,62 +6,27 @@ import { FavoriteRecipe } from '../utils/favoriteRecipes';
 type FavoriteCardProps = {
   recipe: FavoriteRecipe,
   index: number,
-  updateFavorites: () => void,
+  handleFavorite: () => void,
+  handleShare: () => void,
+  isShare: boolean;
 };
 
-function FavoriteCard({ recipe, index, updateFavorites }: FavoriteCardProps) {
-  const [isFavorite, setIsFavorite] = useState(true);
-  const [isShare, setIsShare] = useState<boolean>(false);
-  const navigate = useNavigate();
-
-  const {
-    id,
-    type,
-    nationality,
-    category,
-    alcoholicOrNot,
-    name,
-    image,
-  } = recipe;
-
+function FavoriteCard(
+  { recipe, index, handleFavorite, handleShare, isShare }: FavoriteCardProps,
+) {
+  const { id, type, nationality, category, alcoholicOrNot, name, image } = recipe;
   const linkPath = `/${type}s/${id}`;
-
-  function handleShare() {
-    navigator.clipboard.writeText(`http://localhost:3000${linkPath}`);
-    setIsShare(true);
-  }
-
-  const handleFavorite = () => {
-    const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
-    const removeFavorite = favoriteRecipes
-      .filter((recipeF: any) => recipeF.id !== id);
-    localStorage.setItem('favoriteRecipes', JSON.stringify(removeFavorite));
-    setIsFavorite(!isFavorite);
-    updateFavorites();
-  };
-
-  const handleDetail = () => {
-    navigate(linkPath);
-  };
 
   return (
     <div>
-      <button
-        onClick={ handleDetail }
-        style={ {
-          backgroundColor: 'transparent',
-          border: 'none',
-          padding: 0,
-          outline: 'none',
-        } }
-      >
+      <Link to={ linkPath }>
         <img
           src={ image }
           alt={ name }
           data-testid={ `${index}-horizontal-image` }
           style={ { width: '150px' } }
         />
-      </button>
+      </Link>
       <Link to={ linkPath }>
         <span data-testid={ `${index}-horizontal-name` }>{name}</span>
       </Link>
