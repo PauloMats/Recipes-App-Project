@@ -3,6 +3,7 @@ import { useState } from 'react';
 import search from '../images/searchIcon.svg';
 import profile from '../images/profileIcon.svg';
 import SearchBar from './SearchBar';
+import NavigateToProfile from '../utils/NavigateToProfile';
 
 type HeaderProps = {
   title: string;
@@ -17,9 +18,9 @@ function Header({
 }: HeaderProps) {
   const navigate = useNavigate();
 
-  function handleClick() {
-    return navigate('/profile');
-  }
+  // function handleClick() {
+  //   return navigate('/profile');
+  // }
 
   const [showSearchBar, setShowSearchBar] = useState(false);
 
@@ -35,7 +36,7 @@ function Header({
         <a href="/profile">
           {' '}
           <img src={ profile } alt="profile" data-testid="profile-top-btn" />
-          <button onClick={ handleClick }>Ir para perfil</button>
+          <NavigateToProfile />
         </a>
       )}
       {showSearchBar && <SearchBar />}
