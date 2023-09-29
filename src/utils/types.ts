@@ -62,7 +62,7 @@ export type RecipeType = {
   strImageAttribution: null | string,
 };
 
-export type DoneRecipe = {
+export type DoneRecipeType = {
   id: string,
   type: string,
   nationality: string,
@@ -71,5 +71,30 @@ export type DoneRecipe = {
   name: string,
   image: string,
   doneDate: string,
-  tags: string,
+  tags: string[]
 };
+
+export type SearchType = {
+  filter: string,
+  search: string,
+};
+export type MealsType = {
+  idMeal: string,
+  strMeal: string,
+  strMealThumb: string,
+};
+export type DrinksType = {
+  idDrink: string,
+  strDrink: string,
+  strDrinkThumb: string,
+};
+
+export type RecipesType = {
+  id: string,
+  str: string,
+  thumb: string,
+};
+
+export type CategoriesType = {
+  strCategory: string,
+}[];
