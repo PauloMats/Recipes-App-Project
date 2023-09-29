@@ -1,10 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './Pages/pages/Login';
 import Recipes from './Pages/pages/Recipes';
-import Profile from './components/Profile';
+import Profile from './Pages/pages/Profile';
 import DoneRecipes from './components/DoneRecipes';
 import { DoneSearchLayout } from './Helper/Layouts/DoneSearchLayout';
 import { DrinksLayout } from './Helper/Layouts/DrinksLayout';
@@ -18,44 +17,31 @@ import FavoriteRecipes from './Pages/pages/FavoriteRecipes';
 
 function App() {
   return (
-    <>
-      <div className="meals">
-        <span className="logo">Receitas APP</span>
-        <object
-          className="rocksGlass"
-          type="image/svg+xml"
-          data={ rockGlass }
-        >
-          Glass
-        </object>
-        <Profile />
-      </div>
-      <Routes>
-        <Route path="/" element={ <FullHeaderLayout /> }>
-          {' '}
-          <Route index element={ <Login /> } />
-        </Route>
-        <Route path="/meals" element={ <MealsLayout /> }>
-          <Route index element={ <Recipes /> } />
-        </Route>
-        <Route path="/drinks" element={ <DrinksLayout /> }>
-          <Route index element={ <Recipes /> } />
-        </Route>
-        <Route path="/meals/:id" element={ <RecipeDetails /> } />
-        <Route path="/drinks/:id" element={ <RecipeDetails /> } />
-        <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
-        <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
-        <Route path="/profile" element={ <ProfileSearchLayout /> }>
-          <Route index element={ <Profile /> } />
-        </Route>
-        <Route path="/done-recipes" element={ <DoneSearchLayout /> }>
-          <Route index element={ <DoneRecipes /> } />
-        </Route>
-        <Route path="/favorite-recipes" element={ <FavoriteSearchLayout /> }>
-          <Route index element={ <FavoriteRecipes /> } />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={ <FullHeaderLayout /> }>
+        {' '}
+        <Route index element={ <Login /> } />
+      </Route>
+      <Route path="/meals" element={ <MealsLayout /> }>
+        <Route index element={ <Recipes /> } />
+      </Route>
+      <Route path="/drinks" element={ <DrinksLayout /> }>
+        <Route index element={ <Recipes /> } />
+      </Route>
+      <Route path="/meals/:id" element={ <RecipeDetails /> } />
+      <Route path="/drinks/:id" element={ <RecipeDetails /> } />
+      <Route path="/meals/:id/in-progress" element={ <RecipeInProgress /> } />
+      <Route path="/drinks/:id/in-progress" element={ <RecipeInProgress /> } />
+      <Route path="/profile" element={ <ProfileSearchLayout /> }>
+        <Route index element={ <Profile /> } />
+      </Route>
+      <Route path="/done-recipes" element={ <DoneSearchLayout /> }>
+        <Route index element={ <DoneRecipes /> } />
+      </Route>
+      <Route path="/favorite-recipes" element={ <FavoriteSearchLayout /> }>
+        <Route index element={ <FavoriteRecipes /> } />
+      </Route>
+    </Routes>
   );
 }
 
