@@ -1,11 +1,6 @@
-import React from 'react';
-import { vi } from 'vitest';
-import { render, fireEvent, waitFor, act, cleanup } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { MemoryRouter, useNavigate } from 'react-router-dom';
+import { fireEvent } from '@testing-library/react';
 import renderWithRouter from '../Helper/renderWihtRouter';
 import Header from '../components/Header';
-import App from '../App';
 
 const SEARCH_TOP_BTN = 'search-top-btn';
 
