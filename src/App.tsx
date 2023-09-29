@@ -14,6 +14,7 @@ import { MealsLayout } from './Helper/Layouts/MealsLayout';
 import { ProfileSearchLayout } from './Helper/Layouts/ProfileSeachLayout';
 import RecipeDetails from './components/RecipeDetails';
 import RecipeInProgress from './Pages/pages/RecipeInProgress';
+import FavoriteRecipes from './Pages/pages/FavoriteRecipes';
 
 function App() {
   return (
