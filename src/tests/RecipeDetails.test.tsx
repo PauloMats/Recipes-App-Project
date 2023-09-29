@@ -1,4 +1,4 @@
-import { MemoryRouter, BrowserRouter as Router, useNavigate } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
@@ -27,38 +27,38 @@ afterEach(() => {
   setItemSpy.mockClear();
 });
 
-const recipeMock = [
-  {
-    idMeal: 1,
-    strMeal: 'Meal Name',
-    strMealThumb: 'meal_image.jpg',
-    strCategory: 'Meal Category',
-    strInstructions: 'Instructions for the meal',
-  },
-];
+// const recipeMock = [
+//   {
+//     idMeal: 1,
+//     strMeal: 'Meal Name',
+//     strMealThumb: 'meal_image.jpg',
+//     strCategory: 'Meal Category',
+//     strInstructions: 'Instructions for the meal',
+//   },
+// ];
 
-const testIds = {
-  PHOTO: 'recipe-photo',
-  SHARE: 'share-btn',
-  // FAVORITE: 'favorite-btn',
-  TITLE: 'recipe-title',
-  CATEGORY: 'recipe-category',
-  INSTRUCTIONS: 'instructions',
-  VIDEO: 'video',
-  // START_RECIPE: 'start-recipe-btn',
-};
+// const testIds = {
+//   PHOTO: 'recipe-photo',
+//   SHARE: 'share-btn',
+//   // FAVORITE: 'favorite-btn',
+//   TITLE: 'recipe-title',
+//   CATEGORY: 'recipe-category',
+//   INSTRUCTIONS: 'instructions',
+//   VIDEO: 'video',
+//   // START_RECIPE: 'start-recipe-btn',
+// };
 
 const rotaTestada = '/meals/53065';
 const rotaTestadaDrink = '/drinks/15997';
 const favorite = 'favorite-btn';
 const startRecipeBtn = 'start-recipe-btn';
 const start = 'Start Recipe';
-const testLocalStorage = {
-  drinks: {},
-  meals: {
-    52771: [],
-  },
-};
+// const testLocalStorage = {
+//   drinks: {},
+//   meals: {
+//     52771: [],
+//   },
+// };
 
 describe('Testa a página de detalhes de uma receita', () => {
   test('Renderiza sem erros', () => {
@@ -128,7 +128,7 @@ describe('Testa a página de detalhes de uma receita', () => {
 
   test('Testa se o botão continue aparece após o apertar o start', async () => {
     const data = '{"meals":{"53065":[["Sushi Rice - 300ml ","Rice wine - 100ml","Caster Sugar - 2 tbs","Mayonnaise - 3 tbs","Rice wine - 1 tbs","Soy Sauce - 1 tbs","Cucumber - 1","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  ","  -  "]]}}';
-    const history = createMemoryHistory();
+    // const history = createMemoryHistory();
     renderWithRouter(<App />, { route: rotaTestada });
     await expect(await screen.findByTestId(startRecipeBtn)).toHaveTextContent(start);
     await userEvent.click(await screen.findByTestId(startRecipeBtn));

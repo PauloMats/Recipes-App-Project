@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import search from '../images/searchIcon.svg';
 import profile from '../images/profileIcon.svg';
@@ -16,8 +15,6 @@ function Header({
   searchTrue = false,
   profileTrue = false,
 }: HeaderProps) {
-  const navigate = useNavigate();
-
   // function handleClick() {
   //   return navigate('/profile');
   // }
