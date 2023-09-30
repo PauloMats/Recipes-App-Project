@@ -11,29 +11,41 @@ function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
   const [recipe, setRecipe] = useState<RecipeType[]>([]);
-  const [recomendations, setRecomendations] = useState<RecipeType[]>([]);
   const [btnStatus, setBtnStatus] = useState<boolean>(true);
   const [isShare, setIsShare] = useState<boolean>(false);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [ingredients, setIngredients] = useState<string[]>([]);
+  const [localIngredients, setLocalIngredients] = useState<string[]>([]);
 
   const isMeal = location.pathname.includes('/meals/');
+  const IngredientsLocal = JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
+  const idKey = id || '';
+  const navigate = useNavigate();
 
   useEffect(() => {
     const endpoint = isMeal ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}` : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
     async function getMeal() {
       const recipeDescription = await fetchAPi(endpoint);
-      // console.log(recipeDescription);
       setRecipe(recipeDescription);
+      console.log(recipeDescription
+        .map((description: any) => recipeIngredients(description))[0]);
+      const inProgressRecipes = localStorage.getItem('inProgressRecipes');
+      if (!inProgressRecipes) {
+        const defaultProgress = {
+          [isMeal ? 'meals' : 'drinks']: {
+            [idKey]: recipeDescription
+              .map((description:any) => recipeIngredients(description)),
+          },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(defaultProgress));
+      }
     }
 
     getMeal();
   }, [isMeal, id]);
-
-  // console.log(recomendations);
-
   function handleShare() {
-    navigator.clipboard.writeText(`http://localhost:3000${location.pathname}`);
+    const adjust = location.pathname.replace('/in-progress', '');
+    navigator.clipboard.writeText(`http://localhost:3000${adjust}`);
     setIsShare(true);
   }
   function handleFavorite() {
@@ -56,31 +68,93 @@ function RecipeInProgress() {
     }
     setIsFavorite(!isFavorite);
   }
-
   function textStyle(index: any) {
     const itemSelected = `label[data-testid="${index}-ingredient-step"]`;
-    const element = document.querySelector(itemSelected) as HTMLElement;
-
-    const inputSelected = `input[id="${index}"]`;
     const elementText = document.querySelector(itemSelected) as HTMLElement;
-
-    if (element) {
-      element
-        .setAttribute('style', 'text-decoration: line-through; color: rgb(0, 0, 0);');
-      setIngredients([...ingredients, itemSelected]);
-      const receita = localStorage.getItem('inProgressRecipes');
-      console.log(element.innerText);
-      console.log(receita);
-    }
-    if (ingredients.includes(itemSelected)) {
-      setIngredients(ingredients.filter((item) => item !== itemSelected));
-      if (element) {
-        element.removeAttribute('style');
+    const ingredientText = elementText.innerText;
+    const progressKey = isMeal ? 'meals' : 'drinks';
+    const savedProgress = IngredientsLocal[progressKey]
+      ?.[idKey]?.[0].map((item: any) => item.trim()) || [];
+    if (elementText) {
+      const itemInLocalStorage = savedProgress.includes(ingredientText);
+      if (!itemInLocalStorage) {
+        const updatedProgress = [...savedProgress, ingredientText];
+        const updatedLocalStorage = {
+          ...IngredientsLocal,
+          [progressKey]: {
+            ...IngredientsLocal[progressKey],
+            [idKey]: [updatedProgress.map((item: any) => item.trim())],
+          },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(updatedLocalStorage));
+      } else {
+        const updatedProgress = savedProgress
+          .filter((item: any) => item !== ingredientText);
+        const updatedLocalStorage = {
+          ...IngredientsLocal,
+          [progressKey]: {
+            ...IngredientsLocal[progressKey],
+            [idKey]: [updatedProgress.map((item: any) => item.trim())],
+          },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(updatedLocalStorage));
+      }
+      if (!ingredients.includes(ingredientText)) {
+        elementText
+          .setAttribute('style', 'text-decoration: line-through; color: rgb(0, 0, 0);');
+        setIngredients([...ingredients, ingredientText]);
+      } else {
+        setIngredients(ingredients.filter((item) => item !== ingredientText));
+        elementText.removeAttribute('style');
       }
     }
-    // console.log(ingredients);
   }
-
+  function checkItemStyle(name: any): React.CSSProperties {
+    const progressKey = isMeal ? 'meals' : 'drinks';
+    const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
+      .map((item: any) => item.trim()) || [];
+    const isInLocalStorage = savedProgress.includes(name.trim());
+    if (isInLocalStorage) {
+      return {
+        textDecoration: 'none',
+        color: 'none',
+      };
+    }
+    return {
+      textDecoration: 'line-through',
+      color: 'rgb(0, 0, 0)',
+    };
+  }
+  function handleButton() {
+    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
+    const eachTag = recipe.flatMap((item) => {
+      if (item.strTags) {
+        return item.strTags.split(',').map((tag) => tag.trim());
+      }
+      return [];
+    });
+    const done = {
+      id,
+      type: isMeal ? 'meal' : 'drink',
+      nationality: recipe[0].strArea || '',
+      category: recipe[0].strCategory,
+      alcoholicOrNot: recipe[0].strAlcoholic || '',
+      name: recipe[0].strMeal || recipe[0].strDrink,
+      image: recipe[0].strMealThumb || recipe[0].strDrinkThumb,
+      doneDate: new Date().toISOString(),
+      tags: eachTag,
+    };
+    localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, done]));
+    navigate('/done-recipes');
+  }
+  function checkInput(name: any) {
+    const inProgressRecipes = localStorage.getItem('inProgressRecipes');
+    const progressKey = isMeal ? 'meals' : 'drinks';
+    const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
+      .map((item: any) => item.trim()) || [];
+    const isInLocalStorage = savedProgress.includes(name.trim());
+    return !(isInLocalStorage);
+  }
   return (
     recipe.map((description) => (
       <div key={ isMeal ? description.idMeal : description.idDrink }>
@@ -111,17 +185,19 @@ function RecipeInProgress() {
         >
           { isMeal ? description.strCategory : description.strAlcoholic }
         </h3>
-        <div>
+        <div id="ingredientes">
           { recipeIngredients(description).map((item, index) => (
             <div key={ index }>
               <label
                 data-testid={ `${index}-ingredient-step` }
                 htmlFor={ item }
+                style={ checkItemStyle(item) }
               >
                 <input
                   type="checkbox"
                   name={ item }
                   id={ String(index) }
+                  checked={ checkInput(item) }
                   onClick={ () => textStyle(index) }
                 />
                 {item}
@@ -129,12 +205,13 @@ function RecipeInProgress() {
             </div>
           )) }
         </div>
-
         <p data-testid="instructions">{ description.strInstructions }</p>
         <button
           className="footer"
           data-testid="finish-recipe-btn"
-          // onClick={ handleButton }
+          onClick={ handleButton }
+          disabled={ IngredientsLocal[isMeal ? 'meals' : 'drinks']
+            ?.[idKey]?.[0].length !== 0 }
         >
           Finish Recipe
         </button>
