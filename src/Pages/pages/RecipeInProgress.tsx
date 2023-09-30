@@ -5,7 +5,6 @@ import fetchAPi from '../../utils/fetchApi';
 import heart from '../../images/whiteHeartIcon.svg';
 import heartFull from '../../images/blackHeartIcon.svg';
 import { recipeIngredients } from '../../utils/recipeDetailsUtils';
-import './RecipeInProgress.css';
 
 function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -27,8 +26,8 @@ function RecipeInProgress() {
     async function getMeal() {
       const recipeDescription = await fetchAPi(endpoint);
       setRecipe(recipeDescription);
-      console.log(recipeDescription
-        .map((description: any) => recipeIngredients(description))[0]);
+      // console.log(recipeDescription
+      //   .map((description: any) => recipeIngredients(description))[0]);
       const inProgressRecipes = localStorage.getItem('inProgressRecipes');
       if (!inProgressRecipes) {
         const defaultProgress = {
@@ -38,6 +37,11 @@ function RecipeInProgress() {
           },
         };
         localStorage.setItem('inProgressRecipes', JSON.stringify(defaultProgress));
+      }
+      const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+      if (favoriteRecipes.map((item: any) => item.id).includes(id)) {
+        console.log('dog');
+        setIsFavorite(true);
       }
     }
 
@@ -50,6 +54,9 @@ function RecipeInProgress() {
   }
   function handleFavorite() {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+    // if (favoriteRecipes.map((item: any) => item.id).includes(id)) {
+    //   setIsFavorite(true);
+    // }
     if (isFavorite) {
       const newFavorite = favoriteRecipes.filter((recipeF: any) => recipeF.id !== id);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorite));
