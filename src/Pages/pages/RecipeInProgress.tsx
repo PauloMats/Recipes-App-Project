@@ -40,7 +40,6 @@ function RecipeInProgress() {
       }
       const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
       if (favoriteRecipes.map((item: any) => item.id).includes(id)) {
-        console.log('dog');
         setIsFavorite(true);
       }
     }
@@ -203,7 +202,7 @@ function RecipeInProgress() {
                 <input
                   type="checkbox"
                   name={ item }
-                  id={ String(index) }
+                  data-testid={ `checkbox-${index}` }
                   checked={ checkInput(item) }
                   onClick={ () => textStyle(index) }
                 />
