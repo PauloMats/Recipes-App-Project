@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './Pages/pages/Login';
 import Recipes from './Pages/pages/Recipes';
 import Profile from './Pages/pages/Profile';
-import DoneRecipes from './components/DoneRecipes';
 import { DoneSearchLayout } from './Helper/Layouts/DoneSearchLayout';
 import { DrinksLayout } from './Helper/Layouts/DrinksLayout';
 import { FavoriteSearchLayout } from './Helper/Layouts/FavoriteSearchLayout';
@@ -14,6 +13,7 @@ import { ProfileSearchLayout } from './Helper/Layouts/ProfileSeachLayout';
 import RecipeDetails from './components/RecipeDetails';
 import RecipeInProgress from './Pages/pages/RecipeInProgress';
 import FavoriteRecipes from './Pages/pages/FavoriteRecipes';
+import DoneRecipes from './components/DoneRecipes';
 
 function App() {
   return (
