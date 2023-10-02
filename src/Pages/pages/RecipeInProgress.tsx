@@ -73,7 +73,7 @@ function RecipeInProgress() {
     const ingredientText = elementText.innerText;
     const progressKey = isMeal ? 'meals' : 'drinks';
     const savedProgress = IngredientsLocal[progressKey]
-      ?.[idKey]?.[0].map((item: any) => item.trim()) || [];
+      ?.[idKey]?.[0].map((item: any) => item?.trim());
     if (elementText) {
       const itemInLocalStorage = savedProgress.includes(ingredientText);
       if (!itemInLocalStorage) {
@@ -93,7 +93,7 @@ function RecipeInProgress() {
           ...IngredientsLocal,
           [progressKey]: {
             ...IngredientsLocal[progressKey],
-            [idKey]: [updatedProgress.map((item: any) => item.trim())],
+            [idKey]: [updatedProgress.map((item: any) => item?.trim())],
           },
         };
         localStorage.setItem('inProgressRecipes', JSON.stringify(updatedLocalStorage));
@@ -111,7 +111,7 @@ function RecipeInProgress() {
   function checkItemStyle(name: any): React.CSSProperties {
     const progressKey = isMeal ? 'meals' : 'drinks';
     const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
-      .map((item: any) => item) || [];
+      .map((item: any) => item);
     const isInLocalStorage = savedProgress.includes(name);
     if (isInLocalStorage) {
       return {
@@ -128,7 +128,7 @@ function RecipeInProgress() {
     const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
     const eachTag = recipe.flatMap((item) => {
       if (item.strTags) {
-        return item.strTags.split(',').map((tag) => tag.trim());
+        return item.strTags.split(',').map((tag) => tag?.trim());
       }
       return [];
     });
@@ -149,8 +149,8 @@ function RecipeInProgress() {
   function checkInput(name: any) {
     const progressKey = isMeal ? 'meals' : 'drinks';
     const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
-      .map((item: any) => item.trim()) || [];
-    const isInLocalStorage = savedProgress.includes(name.trim());
+      .map((item: any) => item?.trim());
+    const isInLocalStorage = savedProgress.includes(name?.trim());
     return !(isInLocalStorage);
   }
   return (
