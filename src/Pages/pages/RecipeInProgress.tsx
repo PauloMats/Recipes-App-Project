@@ -10,11 +10,9 @@ function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
   const location = useLocation();
   const [recipe, setRecipe] = useState<RecipeType[]>([]);
-  const [btnStatus, setBtnStatus] = useState<boolean>(true);
   const [isShare, setIsShare] = useState<boolean>(false);
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [ingredients, setIngredients] = useState<string[]>([]);
-  const [localIngredients, setLocalIngredients] = useState<string[]>([]);
 
   const isMeal = location.pathname.includes('/meals/');
   const IngredientsLocal = JSON.parse(localStorage.getItem('inProgressRecipes') || '{}');
@@ -26,8 +24,6 @@ function RecipeInProgress() {
     async function getMeal() {
       const recipeDescription = await fetchAPi(endpoint);
       setRecipe(recipeDescription);
-      // console.log(recipeDescription
-      //   .map((description: any) => recipeIngredients(description))[0]);
       const inProgressRecipes = localStorage.getItem('inProgressRecipes');
       if (!inProgressRecipes) {
         const defaultProgress = {
@@ -53,9 +49,6 @@ function RecipeInProgress() {
   }
   function handleFavorite() {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
-    // if (favoriteRecipes.map((item: any) => item.id).includes(id)) {
-    //   setIsFavorite(true);
-    // }
     if (isFavorite) {
       const newFavorite = favoriteRecipes.filter((recipeF: any) => recipeF.id !== id);
       localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorite));
@@ -89,7 +82,7 @@ function RecipeInProgress() {
           ...IngredientsLocal,
           [progressKey]: {
             ...IngredientsLocal[progressKey],
-            [idKey]: [updatedProgress.map((item: any) => item.trim())],
+            [idKey]: [updatedProgress.map((item: any) => item)],
           },
         };
         localStorage.setItem('inProgressRecipes', JSON.stringify(updatedLocalStorage));
@@ -118,8 +111,8 @@ function RecipeInProgress() {
   function checkItemStyle(name: any): React.CSSProperties {
     const progressKey = isMeal ? 'meals' : 'drinks';
     const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
-      .map((item: any) => item.trim()) || [];
-    const isInLocalStorage = savedProgress.includes(name.trim());
+      .map((item: any) => item) || [];
+    const isInLocalStorage = savedProgress.includes(name);
     if (isInLocalStorage) {
       return {
         textDecoration: 'none',
@@ -154,7 +147,6 @@ function RecipeInProgress() {
     navigate('/done-recipes');
   }
   function checkInput(name: any) {
-    const inProgressRecipes = localStorage.getItem('inProgressRecipes');
     const progressKey = isMeal ? 'meals' : 'drinks';
     const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
       .map((item: any) => item.trim()) || [];
@@ -204,7 +196,7 @@ function RecipeInProgress() {
                   name={ item }
                   data-testid={ `checkbox-${index}` }
                   checked={ checkInput(item) }
-                  onClick={ () => textStyle(index) }
+                  onChange={ () => textStyle(index) }
                 />
                 {item}
               </label>
