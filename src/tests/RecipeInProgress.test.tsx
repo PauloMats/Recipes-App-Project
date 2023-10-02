@@ -19,7 +19,7 @@ const checkbox6 = 'checkbox-6';
 const finishBtn = 'finish-recipe-btn';
 const favorite = 'favorite-btn';
 const share = 'share-btn';
-
+const ingredient = '0-ingredient-step';
 describe('Testa a página de receita em progressso', () => {
   afterEach(() => {
     vi.restoreAllMocks();
@@ -46,7 +46,7 @@ describe('Testa a página de receita em progressso', () => {
     expect(await screen.findByTestId('recipe-title')).toBeInTheDocument();
     expect(await screen.findByTestId('recipe-photo')).toBeInTheDocument();
     expect(await screen.findByTestId('instructions')).toBeInTheDocument();
-    expect(await screen.findByTestId('0-ingredient-step')).toBeInTheDocument();
+    expect(await screen.findByTestId(ingredient)).toBeInTheDocument();
     expect(await screen.findByTestId('1-ingredient-step')).toBeInTheDocument();
     expect(await screen.findByTestId('2-ingredient-step')).toBeInTheDocument();
     expect(await screen.findByTestId('3-ingredient-step')).toBeInTheDocument();
@@ -101,7 +101,7 @@ describe('Testa a página de receita em progressso', () => {
     renderWithRouter(<App />, { route: mealRoute });
     await userEvent.click(await screen.findByTestId(checkbox0));
     await userEvent.click(await screen.findByTestId(checkbox1));
-    expect(await screen.findByTestId('0-ingredient-step')).toHaveAttribute('style', 'text-decoration: line-through; color: rgb(0, 0, 0);');
+    expect(await screen.findByTestId(ingredient)).toHaveAttribute('style', 'text-decoration: line-through; color: rgb(0, 0, 0);');
   });
   // test('Verifica o item', async () => {
   //   const MOCK_RESPONSE = {
@@ -153,7 +153,7 @@ describe('Testa a página de receita em progressso', () => {
     expect(await screen.findByTestId(favorite)).toBeInTheDocument();
     expect(await screen.findByTestId(share)).toBeInTheDocument();
     expect(await screen.findByTestId('recipe-title')).toBeInTheDocument();
-    expect(await screen.findByTestId('0-ingredient-step')).toBeInTheDocument();
+    expect(await screen.findByTestId(ingredient)).toBeInTheDocument();
     expect(await screen.findByTestId('1-ingredient-step')).toBeInTheDocument();
     expect(await screen.findByTestId('2-ingredient-step')).toBeInTheDocument();
     expect(await screen.findByTestId(checkbox0)).toBeInTheDocument();
