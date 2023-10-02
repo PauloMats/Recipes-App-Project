@@ -1,4 +1,3 @@
-import { render, fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Login from '../Pages/pages/Login';
 import renderWithRouter from '../Helper/renderWihtRouter';

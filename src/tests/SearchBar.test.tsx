@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, waitFor, screen, act } from '@testing-library/react';
-import { MemoryRouter, Route, BrowserRouter } from 'react-router-dom';
+import { MemoryRouter, BrowserRouter } from 'react-router-dom';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import SearchBar from '../components/SearchBar';

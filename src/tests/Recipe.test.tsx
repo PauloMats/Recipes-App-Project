@@ -1,13 +1,9 @@
-import React from 'react';
-import { fireEvent, render, renderHook, screen, waitFor } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import Recipes from '../Pages/pages/Recipes';
 import renderWithRouter from '../Helper/renderWihtRouter';
 import CategoryFilter from '../components/CategoryFilter';
 import RecipeCard from '../components/RecipeCard';
-import useFetchRecipes from '../Hooks/useFetchRecipes';
 
 test('renderiza o componente Recipe', () => {
   renderWithRouter(<Recipes />, { route: '/meals' });
