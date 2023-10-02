@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect'; // para adicionar recursos de jest-dom
 import Footer from '../components/Footer';
 import renderWithRouter from '../Helper/renderWihtRouter';

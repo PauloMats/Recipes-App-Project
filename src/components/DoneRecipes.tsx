@@ -109,8 +109,3 @@ function DoneRecipes() {
           ))}
         </div>
       ))}
-    </div>
-  );
-}
-
-export default DoneRecipes;
