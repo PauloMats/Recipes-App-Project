@@ -5,6 +5,7 @@ import fetchAPi from '../../utils/fetchApi';
 import heart from '../../images/whiteHeartIcon.svg';
 import heartFull from '../../images/blackHeartIcon.svg';
 import { recipeIngredients } from '../../utils/recipeDetailsUtils';
+import handleButton, { newFavorite } from '../../utils/recipeInProgress';
 
 function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -34,10 +35,13 @@ function RecipeInProgress() {
         };
         localStorage.setItem('inProgressRecipes', JSON.stringify(defaultProgress));
       }
+      // const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
+      // if (favoriteRecipes.map((item: any) => item.id).includes(id)) {
+      //   setIsFavorite(true);
+      // }
       const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
-      if (favoriteRecipes.map((item: any) => item.id).includes(id)) {
-        setIsFavorite(true);
-      }
+      const isRecipeInFavorites = favoriteRecipes.some((item: any) => item.id === id);
+      setIsFavorite(isRecipeInFavorites);
     }
 
     getMeal();
@@ -49,22 +53,22 @@ function RecipeInProgress() {
   }
   function handleFavorite() {
     const favoriteRecipes = JSON.parse(localStorage.getItem('favoriteRecipes') || '[]');
-    if (isFavorite) {
-      const newFavorite = favoriteRecipes.filter((recipeF: any) => recipeF.id !== id);
-      localStorage.setItem('favoriteRecipes', JSON.stringify(newFavorite));
-    } else {
-      const favorite = {
-        id,
-        type: isMeal ? 'meal' : 'drink',
-        nationality: recipe[0].strArea || '',
-        category: recipe[0].strCategory,
-        alcoholicOrNot: recipe[0].strAlcoholic || '',
-        name: recipe[0].strMeal || recipe[0].strDrink,
-        image: recipe[0].strMealThumb || recipe[0].strDrinkThumb,
-      };
-      localStorage
-        .setItem('favoriteRecipes', JSON.stringify([...favoriteRecipes, favorite]));
-    }
+    // if (isFavorite) {
+    //   newFavorite(favoriteRecipes, id);
+    // }
+    // else {
+    const favorite = {
+      id,
+      type: isMeal ? 'meal' : 'drink',
+      nationality: recipe[0].strArea || '',
+      category: recipe[0].strCategory,
+      alcoholicOrNot: recipe[0].strAlcoholic || '',
+      name: recipe[0].strMeal || recipe[0].strDrink,
+      image: recipe[0].strMealThumb || recipe[0].strDrinkThumb,
+    };
+    localStorage
+      .setItem('favoriteRecipes', JSON.stringify([...favoriteRecipes, favorite]));
+    // }
     setIsFavorite(!isFavorite);
   }
   function textStyle(index: any) {
@@ -124,28 +128,28 @@ function RecipeInProgress() {
       color: 'rgb(0, 0, 0)',
     };
   }
-  function handleButton() {
-    const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
-    const eachTag = recipe.flatMap((item) => {
-      if (item.strTags) {
-        return item.strTags.split(',').map((tag) => tag?.trim());
-      }
-      return [];
-    });
-    const done = {
-      id,
-      type: isMeal ? 'meal' : 'drink',
-      nationality: recipe[0].strArea || '',
-      category: recipe[0].strCategory,
-      alcoholicOrNot: recipe[0].strAlcoholic || '',
-      name: recipe[0].strMeal || recipe[0].strDrink,
-      image: recipe[0].strMealThumb || recipe[0].strDrinkThumb,
-      doneDate: new Date().toISOString(),
-      tags: eachTag,
-    };
-    localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, done]));
-    navigate('/done-recipes');
-  }
+  // function handleButton() {
+  //   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes') || '[]');
+  //   const eachTag = recipe.flatMap((item) => {
+  //     if (item.strTags) {
+  //       return item.strTags.split(',').map((tag) => tag?.trim());
+  //     }
+  //     return [];
+  //   });
+  //   const done = {
+  //     id,
+  //     type: isMeal ? 'meal' : 'drink',
+  //     nationality: recipe[0].strArea || '',
+  //     category: recipe[0].strCategory,
+  //     alcoholicOrNot: recipe[0].strAlcoholic || '',
+  //     name: recipe[0].strMeal || recipe[0].strDrink,
+  //     image: recipe[0].strMealThumb || recipe[0].strDrinkThumb,
+  //     doneDate: new Date().toISOString(),
+  //     tags: eachTag,
+  //   };
+  //   localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, done]));
+  //   navigate('/done-recipes');
+  // }
   function checkInput(name: any) {
     const progressKey = isMeal ? 'meals' : 'drinks';
     const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
@@ -207,7 +211,7 @@ function RecipeInProgress() {
         <button
           className="footer"
           data-testid="finish-recipe-btn"
-          onClick={ handleButton }
+          onClick={ () => handleButton(recipe, id, isMeal, navigate) }
           disabled={ IngredientsLocal[isMeal ? 'meals' : 'drinks']
             ?.[idKey]?.[0].length !== 0 }
         >
