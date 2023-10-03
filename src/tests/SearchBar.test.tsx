@@ -218,10 +218,8 @@ describe('SearchBar Component', () => {
     user.click(getByTestId('ingredient-search-radio'));
     user.click(getByTestId('exec-search-btn'));
 
-    await act(async () => {
-      await waitFor(() => {
-        expect(window.location.pathname).toBe('/drinks/11115');
-      });
+    await waitFor(() => {
+      expect(window.location.pathname).toBe('/drinks/11115');
     });
   });
 });
