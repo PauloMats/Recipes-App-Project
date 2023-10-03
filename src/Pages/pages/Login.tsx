@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../../css/Login.css';
+import tomate from '../../images/tomate.svg';
+import recipeLogo from '../../images/logo Recipes App.svg';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -35,38 +38,44 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          data-testid="email-input"
-          value={ email }
-          onChange={ handleEmailChange }
-        />
-        <br />
-        <label htmlFor="password">Senha:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          data-testid="password-input"
-          value={ password }
-          onChange={ handlePasswordChange }
-        />
-        <br />
-        <button
-          type="submit"
-          data-testid="login-submit-btn"
-          disabled={ !formValid }
-
-        >
-          Entrar
-        </button>
-      </form>
+    <div className="layout">
+      <div className="image-container">
+        <img src={ recipeLogo } alt="logo" className="logo" />
+        <img src={ tomate } alt="tomate" className="tomate" />
+      </div>
+      <div className="login-form">
+        <h2 className="login">Login</h2>
+        <form onSubmit={ handleSubmit } className="form-container">
+          <input
+            placeholder="Email"
+            type="text"
+            id="email"
+            name="email"
+            data-testid="email-input"
+            value={ email }
+            onChange={ handleEmailChange }
+          />
+          <br />
+          <input
+            placeholder="Senha"
+            type="text"
+            id="password"
+            name="password"
+            data-testid="password-input"
+            value={ password }
+            onChange={ handlePasswordChange }
+          />
+          <br />
+          <button
+            className="btn-container"
+            type="submit"
+            data-testid="login-submit-btn"
+            disabled={ !formValid }
+          >
+            Entrar
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
