@@ -5,7 +5,7 @@ import fetchAPi from '../../utils/fetchApi';
 import heart from '../../images/whiteHeartIcon.svg';
 import heartFull from '../../images/blackHeartIcon.svg';
 import { recipeIngredients } from '../../utils/recipeDetailsUtils';
-import handleButton, { newFavorite } from '../../utils/recipeInProgress';
+import handleButton, { checkInput, newFavorite } from '../../utils/recipeInProgress';
 
 function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();
@@ -150,13 +150,13 @@ function RecipeInProgress() {
   //   localStorage.setItem('doneRecipes', JSON.stringify([...doneRecipes, done]));
   //   navigate('/done-recipes');
   // }
-  function checkInput(name: any) {
-    const progressKey = isMeal ? 'meals' : 'drinks';
-    const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
-      .map((item: any) => item?.trim());
-    const isInLocalStorage = savedProgress.includes(name?.trim());
-    return !(isInLocalStorage);
-  }
+  // function checkInput(name: any) {J
+  //   const progressKey = isMeal ? 'meals' : 'drinks';
+  //   const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
+  //     .map((item: any) => item?.trim());
+  //   const isInLocalStorage = savedProgress.includes(name?.trim());
+  //   return !(isInLocalStorage);
+  // }
   return (
     recipe.map((description) => (
       <div key={ isMeal ? description.idMeal : description.idDrink }>
@@ -199,7 +199,7 @@ function RecipeInProgress() {
                   type="checkbox"
                   name={ item }
                   data-testid={ `checkbox-${index}` }
-                  checked={ checkInput(item) }
+                  checked={ checkInput(item, isMeal, IngredientsLocal, idKey) }
                   onChange={ () => textStyle(index) }
                 />
                 {item}

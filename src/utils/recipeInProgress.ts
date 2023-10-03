@@ -28,3 +28,11 @@ export function newFavorite(favoriteRecipes: any, id: any) {
   localStorage.setItem('favoriteRecipes', JSON.stringify(updatedFavorites));
   return updatedFavorites;
 }
+
+export function checkInput(name: any, isMeal: any, IngredientsLocal: any, idKey: any) {
+  const progressKey = isMeal ? 'meals' : 'drinks';
+  const savedProgress = IngredientsLocal[progressKey]?.[idKey]?.[0]
+    .map((item: any) => item?.trim());
+  const isInLocalStorage = savedProgress.includes(name?.trim());
+  return !(isInLocalStorage);
+}
