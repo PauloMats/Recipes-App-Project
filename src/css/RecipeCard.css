@@ -1,0 +1,32 @@
+.card-container {
+  background-color: #FFF;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-container img {
+  width: 100%;
+  display: block;
+}
+
+.card-container span {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  background-color: #F5F5F5;
+}
+
+@media (min-width: 641px) {
+
+  .card-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  img {
+      width: 100px;
+      border-radius: 10px 10px 0 0;
+  }
+}

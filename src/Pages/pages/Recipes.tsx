@@ -4,6 +4,7 @@ import RecipeCard from '../../components/RecipeCard';
 import CategoryFilter from '../../components/CategoryFilter';
 import useFetchRecipes from '../../Hooks/useFetchRecipes';
 import Footer from '../../components/Footer';
+import '../../css/Recipes.css';
 
 function Recipes() {
   const { pathname } = useLocation();
@@ -20,18 +21,20 @@ function Recipes() {
   }, [setSelectedCategory]);
 
   return (
-    <div>
+    <div className="page-container">
       <CategoryFilter
         type={ type }
         onCategorySelect={ handleCategoryClick }
       />
-      {recipes.slice(0, 12).map((recipe, index) => (
-        <RecipeCard
-          key={ recipe.idMeal || recipe.idDrink }
-          recipe={ recipe }
-          index={ index }
-        />
-      ))}
+      <div className="recipes-container">
+        {recipes.slice(0, 12).map((recipe, index) => (
+          <RecipeCard
+            key={ recipe.idMeal || recipe.idDrink }
+            recipe={ recipe }
+            index={ index }
+          />
+        ))}
+      </div>
       <Footer />
     </div>
   );

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import '../css/CategoryFilter.css';
 
 type Props = {
   onCategorySelect: (category: string | null) => void;
@@ -44,7 +45,7 @@ function CategoryFilter({ onCategorySelect, type }: Props) {
   };
 
   return (
-    <div>
+    <div className="filter-container">
       <button
         data-testid="All-category-filter"
         onClick={ () => { onCategorySelect(null); setToggle(null); } }
