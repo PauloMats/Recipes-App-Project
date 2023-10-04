@@ -1,5 +1,5 @@
-div[data-testid="searchBar"] {
-  background-color: #41197F;
+div [data-testid = 'searchBar'] {
+  background-color: #41197f;
   margin: 10px;
   border-radius: 10px;
   display: flex;
@@ -11,13 +11,13 @@ div[data-testid="searchBar"] {
   margin: 0 auto;
 } */
 
-input[type="text"] {
-  padding: 10px;
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 10px;
+input [type = 'text'] {
   border-radius: 10px;
   border-style:groove;
+  box-sizing: border-box;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 div {
@@ -29,7 +29,7 @@ label {
 
 }
 
-label input[type="radio"] {
+label input [type = 'radio'] {
   margin-right: 5px;
 }
 
@@ -37,30 +37,30 @@ div label {
   color: white;
 }
 
-button[data-testid="exec-search-btn"] {
-  padding: 10px 20px;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-left: 10px;
+button [data-testid = 'exec-search-btn'] {
   background-color: #FCC436;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
   font-family: 'Epilogue';
   font-style: normal;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 16px;
-  line-height: 12px;
-  text-align: center;
   letter-spacing: 0.03em;
-  text-transform: uppercase;
-  border-radius: 5px;
+  line-height: 12px;
   margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 10px 20px;
+  text-align: center;
+  text-transform: uppercase;
   width: 80%;
 }
 
 .search-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .search-container div {

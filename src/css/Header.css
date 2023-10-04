@@ -1,7 +1,7 @@
 header {
-  background-color: #FCDC35;
-  width: 100%;
+  background-color: #fcdc35;
   height: 45px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,13 +12,11 @@ header img {
   height: 30px;
 }
 
-
 header button {
   background: none;
   border: none;
   cursor: pointer;
 }
-
 
 header a {
   text-decoration: none;
@@ -33,16 +31,16 @@ header a img {
   filter: brightness(0) saturate(100%) invert(16%) sepia(68%) saturate(2375%) hue-rotate(250deg) brightness(83%) contrast(108%);
 }
 
-h1[data-testid="page-title"] {
-  margin-top: 10px;
+h1[data-testid = 'page-title'] {
+  color: #41197f;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
+  margin-top: 10px;
   text-align: center;
-  color: #41197F;
   text-transform: uppercase;
 }
 
-div[data-testid="icon-options"] {
+div[data-testid = 'icon-options'] {
   display: flex;
   justify-content: center;
   align-items: center;
