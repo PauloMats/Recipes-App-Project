@@ -1,0 +1,36 @@
+.categoryFilter {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.categoryFilter div div {
+  align-items: center;
+  background: none;
+  border: 1.811px solid #fcc436;
+  border-radius: 45.28px;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 45px;
+  justify-content: center;
+  width: 45px;
+}
+
+.categoryFilter div button {
+  background: none;
+  border: none;
+  width: 20px;
+}
+
+.categoryFilter div button img {
+  filter: brightness(0) saturate(100%) invert(73%) sepia(11%)
+    saturate(2364%) hue-rotate(2deg) brightness(105%) contrast(98%);
+  width: 20px;
+}
+
+.categoryFilter div p {
+  font-family: Roboto , sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+}

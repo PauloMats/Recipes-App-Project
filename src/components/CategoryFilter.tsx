@@ -1,4 +1,11 @@
 import { useEffect, useState } from 'react';
+import '../css/CategoryFilter.css';
+import allIcon from '../images/allIcon.svg';
+import beefIcon from '../images/beefIcon.svg';
+import goatIcon from '../images/goatIcon.svg';
+import Chicken from '../images/chicken.svg';
+import breakfast from '../images/breakfast.svg';
+import dessert from '../images/dessert.svg';
 
 type Props = {
   onCategorySelect: (category: string | null) => void;
@@ -8,7 +15,7 @@ type Props = {
 function CategoryFilter({ onCategorySelect, type }: Props) {
   const [categories, setCategories] = useState<string[]>([]);
   const [toggle, setToggle] = useState<string | null>(null);
-
+  const icons = [beefIcon, breakfast, Chicken, dessert, goatIcon];
   useEffect(() => {
     const fetchCategories = async () => {
       let endpoint: string;
@@ -44,22 +51,32 @@ function CategoryFilter({ onCategorySelect, type }: Props) {
   };
 
   return (
-    <div>
-      <button
-        data-testid="All-category-filter"
-        onClick={ () => { onCategorySelect(null); setToggle(null); } }
-      >
-        All
-      </button>
-      {categories.map((category) => (
-        <button
-          key={ category }
-          data-testid={ `${category}-category-filter` }
-          onClick={ () => handleCategoryToggle(category) }
-          className={ category === toggle ? 'active' : '' }
-        >
-          {category}
-        </button>
+    <div className="categoryFilter">
+      <div>
+        <div className="all">
+          <button
+            data-testid="All-category-filter"
+            onClick={ () => { onCategorySelect(null); setToggle(null); } }
+          >
+            {type === 'meals' && <img src={ allIcon } alt={ allIcon } />}
+          </button>
+        </div>
+        <p>All</p>
+      </div>
+      {categories.map((category, index) => (
+        <div key={ index }>
+          <div className={ category }>
+            <button
+              key={ category }
+              data-testid={ `${category}-category-filter` }
+              onClick={ () => handleCategoryToggle(category) }
+              className={ category === toggle ? 'active' : '' }
+            >
+              {type === 'meals' && <img src={ icons[index] } alt={ category[index] } />}
+            </button>
+          </div>
+          <p>{category}</p>
+        </div>
       ))}
     </div>
   );
