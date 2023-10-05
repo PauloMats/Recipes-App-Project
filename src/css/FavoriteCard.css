@@ -1,60 +1,60 @@
 .favorite-card-container {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+  border-radius: 10px;
   display: flex;
   margin: 10px 0;
-  background-color: #fff;
-  border: 1px solid #E1E1E1;
-  border-radius: 10px;
   padding: 0;
 }
 
 .favorite-card-container img {
-  height: 100%;
   border-radius: 10px;
+  height: 100%;
   object-fit: cover;
 }
 
 .fav-info-container {
-  padding: 0;
   display: flex;
   flex-direction: column;
-  margin-left: 15px;
-  width: 100%;
   justify-content: space-between;
+  margin-left: 15px;
+  padding: 0;
+  width: 100%;
 }
 
 .fav-name-container {
-  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   flex-grow: 1;
+  justify-content: space-around;
+  padding: 0;
 }
 
 .fav-name {
-  font-size: 18px;
   color: #333;
+  font-size: 18px;
   text-decoration: none;
 }
 
 .fav-info {
-  font-size: 14px;
   color: #777;
+  font-size: 14px;
 }
 
 .fav-button-container {
-  padding: 0;
   display: flex;
   justify-content: flex-end;
+  padding: 0;
 }
 
 .fav-button-container button {
   background: none;
   border: none;
-  margin-left: 10px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .fav-button-container button img {
-  width: 25px;
   height: 25px;
+  width: 25px;
 }
