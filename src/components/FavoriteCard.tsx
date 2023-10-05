@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import heartFull from '../images/blackHeartIcon.svg';
 import share from '../images/shareIcon.svg';
 import { FavoriteRecipe } from '../utils/favoriteRecipes';
+import '../css/FavoriteCard.css';
 
 type FavoriteCardProps = {
   recipe: FavoriteRecipe,
@@ -18,7 +19,7 @@ function FavoriteCard(
   const linkPath = `/${type}s/${id}`;
 
   return (
-    <div>
+    <div className="card-container">
       <Link to={ linkPath }>
         <img
           src={ image }
@@ -27,26 +28,40 @@ function FavoriteCard(
           style={ { width: '150px' } }
         />
       </Link>
-      <Link to={ linkPath }>
-        <span data-testid={ `${index}-horizontal-name` }>{name}</span>
-      </Link>
-      <span data-testid={ `${index}-horizontal-top-text` }>
-        {`${nationality || ''} - ${category} - ${alcoholicOrNot || ''}`}
-      </span>
-      <button onClick={ handleShare }>
-        <img
-          src={ share }
-          alt="Share"
-          data-testid={ `${index}-horizontal-share-btn` }
-        />
-      </button>
-      <button onClick={ handleFavorite }>
-        <img
-          src={ heartFull }
-          alt="Favorite"
-          data-testid={ `${index}-horizontal-favorite-btn` }
-        />
-      </button>
+      <div className="info-container">
+        <div className="name-container">
+          <Link to={ linkPath }>
+            <span
+              className="fav-name"
+              data-testid={ `${index}-horizontal-name` }
+            >
+              {name}
+            </span>
+          </Link>
+          <span
+            className="fav-info"
+            data-testid={ `${index}-horizontal-top-text` }
+          >
+            {`${nationality || ''} - ${category} - ${alcoholicOrNot || ''}`}
+          </span>
+        </div>
+        <div className="button-container">
+          <button onClick={ handleShare }>
+            <img
+              src={ share }
+              alt="Share"
+              data-testid={ `${index}-horizontal-share-btn` }
+            />
+          </button>
+          <button onClick={ handleFavorite }>
+            <img
+              src={ heartFull }
+              alt="Favorite"
+              data-testid={ `${index}-horizontal-favorite-btn` }
+            />
+          </button>
+        </div>
+      </div>
       {isShare && <span>Link copied!</span>}
     </div>
   );
