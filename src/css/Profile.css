@@ -41,7 +41,7 @@
 
 /* section {
   display: grid;
-  gap: 50px;
+  gap:50px;
   grid: repeat(4, 1fr) / 1fr;
   height: 60vh;
   padding: 0 15px;

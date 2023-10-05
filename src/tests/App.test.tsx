@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import Login from '../Pages/pages/Login';
+import Login from '../Pages/Login';
 import renderWithRouter from '../Helper/renderWihtRouter';
 
 test('O formulário de login é renderizado corretamente', () => {

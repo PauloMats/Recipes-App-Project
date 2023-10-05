@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './Pages/pages/Login';
-import Recipes from './Pages/pages/Recipes';
-import Profile from './Pages/pages/Profile';
+import Login from './Pages/Login';
+import Recipes from './Pages/Recipes';
+import Profile from './Pages/Profile';
 import { DoneSearchLayout } from './Helper/Layouts/DoneSearchLayout';
 import { DrinksLayout } from './Helper/Layouts/DrinksLayout';
 import { FavoriteSearchLayout } from './Helper/Layouts/FavoriteSearchLayout';
@@ -11,8 +11,8 @@ import { FullHeaderLayout } from './Helper/Layouts/FullHeaderLayout';
 import { MealsLayout } from './Helper/Layouts/MealsLayout';
 import { ProfileSearchLayout } from './Helper/Layouts/ProfileSeachLayout';
 import RecipeDetails from './components/RecipeDetails';
-import RecipeInProgress from './Pages/pages/RecipeInProgress';
-import FavoriteRecipes from './Pages/pages/FavoriteRecipes';
+import RecipeInProgress from './Pages/RecipeInProgress';
+import FavoriteRecipes from './Pages/FavoriteRecipes';
 import DoneRecipes from './components/DoneRecipes';
 
 function App() {

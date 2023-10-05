@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { RecipeType } from '../../utils/types';
-import fetchAPi from '../../utils/fetchApi';
-import heart from '../../images/whiteHeartIcon.svg';
-import heartFull from '../../images/blackHeartIcon.svg';
-import { recipeIngredients } from '../../utils/recipeDetailsUtils';
-import handleButton, { checkInput, newFavorite } from '../../utils/recipeInProgress';
+import { RecipeType } from '../utils/types';
+import fetchAPi from '../utils/fetchApi';
+import heart from '../images/whiteHeartIcon.svg';
+import heartFull from '../images/blackHeartIcon.svg';
+import { recipeIngredients } from '../utils/recipeDetailsUtils';
+import handleButton, { checkInput, newFavorite } from '../utils/recipeInProgress';
 
 function RecipeInProgress() {
   const { id } = useParams<{ id: string }>();

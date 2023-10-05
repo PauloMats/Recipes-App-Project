@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { useCallback, useState } from 'react';
-import RecipeCard from '../../components/RecipeCard';
-import CategoryFilter from '../../components/CategoryFilter';
-import useFetchRecipes from '../../Hooks/useFetchRecipes';
-import Footer from '../../components/Footer';
+import RecipeCard from '../components/RecipeCard';
+import CategoryFilter from '../components/CategoryFilter';
+import useFetchRecipes from '../Hooks/useFetchRecipes';
+import Footer from '../components/Footer';
 
 function Recipes() {
   const { pathname } = useLocation();
