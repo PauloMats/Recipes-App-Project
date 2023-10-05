@@ -1,6 +1,6 @@
 .done-page-container {
-  max-width: 768px;
   margin: 0 auto;
+  max-width: 768px;
   padding: 0;
 }
 
@@ -11,14 +11,14 @@
 }
 
 .done-filter-container button {
-  padding: 10px;
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
   border-radius: 8px;
   cursor: pointer;
+  padding: 10px;
   transition: background-color 0.3s;
 }
 
-.dones-container, .done-card-container {
+.dones-container {
   display: flex;
   flex-direction: row;
   gap: 15px;
@@ -26,23 +26,27 @@
 
 .done-card-container {
   background-color: white;
-  border: 1px solid #E1E1E1;
+  border: 1px solid #e1e1e1;
   border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
   padding: 0;
+  position: relative;
 }
 
 .done-card-container img {
-  height: 100%;
-  width: auto;
-  object-fit: cover;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  height: 100%;
+  object-fit: cover;
+  width: auto;
 }
 
 .row-container {
+  align-items: center;
   display: flex;
   gap: 15px;
-  align-items: center;
   padding: 0;
 }
 
@@ -50,7 +54,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 0 20px 0 0; 
+  padding: 0 20px 0 0;
 }
 
 .col-container p {
@@ -58,31 +62,27 @@
 }
 
 .done-name {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .done-card-container a {
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
 }
 
 .done-info {
-  font-size: 0.9rem;
   color: grey;
-}
-
-.done-card-container {
-  position: relative;
+  font-size: 0.9rem;
 }
 
 .done-card-container button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   background: transparent;
   border: none;
-  padding: 0 5px 0 0; 
   cursor: pointer;
+  padding: 0 5px 0 0;
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }
 
 .done-card-container button img {
@@ -90,18 +90,19 @@
   width: 20px;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and ( min-width : 769px ) {
+
   .done-page-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
-  
+
   .dones-container {
     align-items: center;
     gap: 25px;
   }
-  
+
   .done-card-container {
     width: 80%;
   }
