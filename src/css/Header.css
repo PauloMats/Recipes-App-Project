@@ -1,0 +1,51 @@
+header {
+  align-items: center;
+  background-color: #fcdc35;
+  display: flex;
+  height: 45px;
+  justify-content: space-between;
+  padding: 0 20px;
+  width: 100%;
+}
+
+header img {
+  height: 30px;
+}
+
+header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+header a {
+  color: black;
+  text-decoration: none;
+}
+
+button img {
+  filter: brightness(0) saturate(100%) invert(16%)
+    sepia(68%) saturate(2375%) hue-rotate(250deg) brightness(83%) contrast(108%);
+}
+
+header a img {
+  filter: brightness(0) saturate(100%) invert(16%)
+    sepia(68%) saturate(2375%) hue-rotate(250deg) brightness(83%) contrast(108%);
+}
+
+[ data-testid = 'page-title' ] {
+  color: #41197f;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+[ data-testid = 'icon-options' ] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  width: 100%;
+}

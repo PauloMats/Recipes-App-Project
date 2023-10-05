@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../css/Searchbar.css';
 
 function SearchBar() {
   type Recipe = {
@@ -73,13 +74,14 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div data-testid="searchBar">
       <input
         type="text"
         placeholder="Search..."
         value={ searchValue }
         onChange={ handleSearchInputChange }
         data-testid="search-input"
+        className="bar"
       />
       <div>
         <label>
