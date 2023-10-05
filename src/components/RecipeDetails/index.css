@@ -1,0 +1,123 @@
+div {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.ingredients-list {
+  padding: 7px;
+  text-align: left;
+  font-family: Epilogue;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.instructions {
+  margin-top: 35px;
+  font-family: Epilogue;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.lista {
+  padding: 15px;
+  border: 0.55px solid #B1B1B1;
+}
+
+.ingredients {
+  margin-bottom: 30px;
+  font-family: Epilogue;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+img[data-testid="recipe-photo"] {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+button[data-testid="share-btn"] {
+  background: #FCC436;
+  padding: 5.5px 15px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+button[data-testid="favorite-btn"] {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+h1[data-testid="recipe-title"] {
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+h3[data-testid="recipe-category"] {
+  font-size: 18px;
+  color: #888;
+  margin-top: 10px;
+}
+
+h6 {
+  border-radius: 5.35px;
+  border: 0.55px;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+p[data-testid="instructions"] {
+  padding: 15px;
+  border: 0.55px solid #B1B1B1;
+  font-size: 18px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+iframe[data-testid="video"] {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  margin-top: 20px;
+}
+
+.carousel {
+  margin-top: 20px;
+}
+
+/* Style the footer button */
+button[data-testid="start-recipe-btn"] {
+  background: #FCC436;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.recommended {
+  font-family: Epilogue;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
+}
