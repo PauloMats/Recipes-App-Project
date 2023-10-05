@@ -18,6 +18,20 @@
   transition: background-color 0.3s;
 }
 
+.done-card-container button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 5px 0 0;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.done-filter-container button:active {
+  background-color: orange;
+}
+
 .dones-container {
   display: flex;
   flex-direction: row;
@@ -73,16 +87,6 @@
 .done-info {
   color: grey;
   font-size: 0.9rem;
-}
-
-.done-card-container button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0 5px 0 0;
-  position: absolute;
-  right: 10px;
-  top: 10px;
 }
 
 .done-card-container button img {
