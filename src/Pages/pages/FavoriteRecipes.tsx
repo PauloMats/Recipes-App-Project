@@ -48,21 +48,18 @@ function FavoriteRecipes() {
           onClick={ () => setFilter('All') }
         >
           All
-
         </button>
         <button
           data-testid="filter-by-meal-btn"
           onClick={ () => setFilter('Meal') }
         >
           Meals
-
         </button>
         <button
           data-testid="filter-by-drink-btn"
           onClick={ () => setFilter('Drink') }
         >
           Drinks
-
         </button>
       </div>
       <div className="favorites-container">

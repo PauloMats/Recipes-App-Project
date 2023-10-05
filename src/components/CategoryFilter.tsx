@@ -45,7 +45,7 @@ function CategoryFilter({ onCategorySelect, type }: Props) {
   };
 
   return (
-    <div className="filter-container">
+    <div className="recipe-filter-container">
       <button
         data-testid="All-category-filter"
         onClick={ () => { onCategorySelect(null); setToggle(null); } }

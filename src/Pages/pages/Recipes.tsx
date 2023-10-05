@@ -21,7 +21,7 @@ function Recipes() {
   }, [setSelectedCategory]);
 
   return (
-    <div className="page-container">
+    <div className="recipe-page-container">
       <CategoryFilter
         type={ type }
         onCategorySelect={ handleCategoryClick }

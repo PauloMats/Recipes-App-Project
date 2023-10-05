@@ -1,0 +1,104 @@
+.done-page-container {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.done-filter-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.done-filter-container button {
+  padding: 10px;
+  border: 1px solid #E1E1E1;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dones-container, .done-card-container {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.done-card-container {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.done-card-container img {
+  height: 100%;
+  width: auto;
+  object-fit: cover;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.row-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.col-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.col-container p {
+  margin: 0;
+}
+
+.done-name {
+  font-weight: bold;
+}
+
+.done-card-container a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.done-info {
+  font-size: 0.9rem;
+  color: grey;
+}
+
+.done-card-container {
+  position: relative;
+}
+
+.done-card-container button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.done-card-container button img {
+  height: 20px;
+  width: 20px;
+}
+
+@media screen and (min-width: 769px) {
+  .done-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dones-container {
+    align-items: center;
+    gap: 25px;
+  }
+  
+  .done-card-container {
+    width: 80%;
+  }
+}

@@ -17,7 +17,7 @@ function RecipeCard({ recipe, index }: RecipeCardProps) {
 
   return (
     <Link to={ linkPath } style={ { textDecoration: 'none', color: 'inherit' } }>
-      <div className="card-container" data-testid={ `${index}-recipe-card` }>
+      <div className="recipe-card-container" data-testid={ `${index}-recipe-card` }>
         <img
           src={ recipeThumb }
           alt={ recipeName }

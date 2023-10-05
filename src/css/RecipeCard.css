@@ -1,16 +1,18 @@
-.card-container {
+.recipe-card-container {
+  display: flex;
+  flex-direction: column;
   background-color: #FFF;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card-container img {
+.recipe-card-container img {
   width: 100%;
   display: block;
 }
 
-.card-container span {
+.recipe-card-container span {
   display: block;
   padding: 10px;
   text-align: center;
@@ -19,7 +21,7 @@
 
 @media (min-width: 641px) {
 
-  .card-container {
+  .recipe-card-container {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
