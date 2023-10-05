@@ -1,23 +1,19 @@
-div[data-testid = 'searchBar'] {
+[ data-testid = 'searchBar' ] {
+  align-items: center;
   background-color: #41197f;
-  margin: 10px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  margin: 10px;
 }
-/* .container {
-  max-width: 600px;
-  margin: 0 auto;
-} */
 
-input[type = 'text'] {
+input.bar {
   border-radius: 10px;
-  border-style:groove;
+  border-style: groove;
   box-sizing: border-box;
+  margin-bottom: 10px;
   padding: 10px;
   width: 100%;
-  margin-bottom: 10px;
 }
 
 div {
@@ -29,7 +25,7 @@ label {
 
 }
 
-label input[type = 'radio'] {
+label [ type = 'radio' ] {
   margin-right: 5px;
 }
 
@@ -37,16 +33,16 @@ div label {
   color: white;
 }
 
-button[data-testid = 'exec-search-btn'] {
+[ data-testid = 'exec-search-btn' ] {
   background-color: #FCC436;
   border: none;
   border-radius: 5px;
-  color: #fff;
+  color: white;
   cursor: pointer;
-  font-family: 'Epilogue';
+  font-family: Epilogue , sans-serif;
+  font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
   letter-spacing: 0.03em;
   line-height: 12px;
   margin-bottom: 10px;

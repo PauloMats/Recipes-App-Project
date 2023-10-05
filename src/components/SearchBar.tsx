@@ -81,6 +81,7 @@ function SearchBar() {
         value={ searchValue }
         onChange={ handleSearchInputChange }
         data-testid="search-input"
+        className="bar"
       />
       <div>
         <label>
