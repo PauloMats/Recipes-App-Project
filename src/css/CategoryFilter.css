@@ -6,14 +6,14 @@
 }
 
 .recipe-filter-container button {
-  padding: 10px;
   border: 1px solid #e1e1e1;
   border-radius: 8px;
   cursor: pointer;
+  padding: 10px;
   transition: background-color 0.3s;
 }
 
-.recipe-filter-container button.active {
+.recipe-filter-container button:active {
   background-color: orange;
 }
 
