@@ -1,0 +1,25 @@
+.recipe-filter-container {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 20px;
+}
+
+.recipe-filter-container button {
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.recipe-filter-container button:active {
+  background-color: orange;
+}
+
+@media ( min-width : 769px ) {
+
+  .recipe-filter-container {
+    justify-content: center;
+  }
+}

@@ -1,9 +1,9 @@
-/* teste */
 .footer {
   background-color: #41197f;
   bottom: 0;
   color: white;
   left: 0;
+  margin: 0 auto;
   padding: 15px;
   position: fixed;
   text-align: center;
