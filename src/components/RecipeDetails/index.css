@@ -40,7 +40,7 @@ div {
   text-align: left;
 }
 
-img[ data-testid = 'recipe-photo' ] {
+[ data-testid = 'recipe-photo' ] {
   border-radius: 8px;
   margin-bottom: 20px;
   max-height: 350px;
@@ -101,7 +101,6 @@ h6 {
   margin-top: 20px;
 }
 
-/* Style the footer button */
 [ data-testid = 'start-recipe-btn' ] {
   background: #fcc436;
   border: none;
