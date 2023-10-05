@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './Pages/pages/Login';
 import Recipes from './Pages/pages/Recipes';
-import Profile from './Pages/pages/Profile';
+import Profile from './Pages/Profile';
 import { DoneSearchLayout } from './Helper/Layouts/DoneSearchLayout';
 import { DrinksLayout } from './Helper/Layouts/DrinksLayout';
 import { FavoriteSearchLayout } from './Helper/Layouts/FavoriteSearchLayout';

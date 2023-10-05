@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/dom';
 import renderWithRouter from '../Helper/renderWihtRouter';
-import Profile from '../Pages/pages/Profile';
+import Profile from '../Pages/Profile';
 
 // const profileId = 'profile-top-btn';
 // const buttonActiveInputId = 'search-top-btn';
