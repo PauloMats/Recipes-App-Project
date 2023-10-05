@@ -1,101 +1,100 @@
 div {
-  max-width: 800px;
   margin: 0 auto;
+  max-width: 800px;
   padding: 20px;
   text-align: center;
 }
 
 .ingredients-list {
-  padding: 7px;
-  text-align: left;
-  font-family: Epilogue;
+  font-family: sans-serif;
   font-size: 20px;
   font-weight: 400;
+  letter-spacing: 0;
   line-height: 14px;
-  letter-spacing: 0em;
+  padding: 7px;
   text-align: left;
 }
 
 .instructions {
-  margin-top: 35px;
-  font-family: Epilogue;
+  font-family: sans-serif;
   font-size: 20px;
   font-weight: 700;
+  letter-spacing: 0;
   line-height: 21px;
-  letter-spacing: 0em;
+  margin-top: 35px;
   text-align: left;
 }
 
 .lista {
+  border: 0.55px solid #b1b1b1;
   padding: 15px;
-  border: 0.55px solid #B1B1B1;
 }
 
 .ingredients {
-  margin-bottom: 30px;
-  font-family: Epilogue;
+  font-family: sans-serif;
   font-size: 20px;
   font-weight: 700;
+  letter-spacing: 0;
   line-height: 21px;
-  letter-spacing: 0em;
+  margin-bottom: 30px;
   text-align: left;
 }
 
-img[data-testid="recipe-photo"] {
-  width: 100%;
-  max-height: 350px;
-  object-fit: cover;
+img[ data-testid = 'recipe-photo' ] {
   border-radius: 8px;
   margin-bottom: 20px;
+  max-height: 350px;
+  object-fit: cover;
+  width: 100%;
 }
 
-button[data-testid="share-btn"] {
-  background: #FCC436;
-  padding: 5.5px 15px;
+button[ data-testid = 'share-btn' ] {
+  background: #fcc436;
   border: none;
   border-radius: 5px;
-  margin-right: 10px;
   cursor: pointer;
+  margin-right: 10px;
+  padding: 5.5px 15px;
 }
 
-button[data-testid="favorite-btn"] {
+button[ data-testid = 'favorite-btn' ] {
   background-color: transparent;
   border: none;
   cursor: pointer;
   margin-top: 10px;
 }
 
-h1[data-testid="recipe-title"] {
+h1[ data-testid = 'recipe-title' ] {
   font-size: 28px;
   margin-top: 20px;
 }
 
-h3[data-testid="recipe-category"] {
-  font-size: 18px;
+h3[ data-testid = 'recipe-category' ] {
   color: #888;
+  font-size: 18px;
   margin-top: 10px;
 }
 
 h6 {
-  border-radius: 5.35px;
   border: 0.55px;
+  border-radius: 5.35px;
   font-size: 16px;
   margin-top: 8px;
 }
 
-p[data-testid="instructions"] {
-  padding: 15px;
-  border: 0.55px solid #B1B1B1;
+p[ data-testid = 'instructions' ] {
+  border: 0.55px solid #b1b1b1;
   font-size: 18px;
-  text-align: left;
   margin-top: 20px;
+  padding: 15px;
+  text-align: left;
 }
 
-iframe[data-testid="video"] {
-  width: 100%;
-  max-width: 800px;
+iframe[ data-testid = 'video' ] {
   height: 400px;
   margin-top: 20px;
+  max-width: 800px;
+  width: 100%;
 }
 
 .carousel {
@@ -103,21 +102,21 @@ iframe[data-testid="video"] {
 }
 
 /* Style the footer button */
-button[data-testid="start-recipe-btn"] {
-  background: #FCC436;
-  color: #fff;
-  padding: 10px 20px;
+button[ data-testid = 'start-recipe-btn' ] {
+  background: #fcc436;
   border: none;
   border-radius: 5px;
-  margin-top: 20px;
+  color: white;
   cursor: pointer;
+  margin-top: 20px;
+  padding: 10px 20px;
 }
 
 .recommended {
   font-family: Epilogue;
   font-size: 20px;
   font-weight: 700;
+  letter-spacing: 0;
   line-height: 21px;
-  letter-spacing: 0em;
   text-align: center;
 }
