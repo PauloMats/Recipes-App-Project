@@ -24,11 +24,13 @@ header a {
 }
 
 button img {
-  filter: brightness(0) saturate(100%) invert(16%) sepia(68%) saturate(2375%) hue-rotate(250deg) brightness(83%) contrast(108%);
+  filter: brightness(0) saturate(100%) invert(16%)
+    sepia(68%) saturate(2375%) hue-rotate(250deg) brightness(83%) contrast(108%);
 }
 
 header a img {
-  filter: brightness(0) saturate(100%) invert(16%) sepia(68%) saturate(2375%) hue-rotate(250deg) brightness(83%) contrast(108%);
+  filter: brightness(0) saturate(100%) invert(16%)
+    sepia(68%) saturate(2375%) hue-rotate(250deg) brightness(83%) contrast(108%);
 }
 
 [ data-testid = 'page-title' ] {

@@ -7,10 +7,11 @@
   margin: 10px;
 }
 
-input.bar {
+.bar {
   border-radius: 10px;
   border-style: groove;
   box-sizing: border-box;
+  height: 40px;
   margin-bottom: 10px;
   padding: 10px;
   width: 100%;
@@ -34,7 +35,7 @@ div label {
 }
 
 [ data-testid = 'exec-search-btn' ] {
-  background-color: #FCC436;
+  background-color: #fcc436;
   border: none;
   border-radius: 5px;
   color: white;
