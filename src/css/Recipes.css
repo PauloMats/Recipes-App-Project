@@ -1,28 +1,29 @@
 .recipe-page-container {
-  font-family: Arial, sans-serif;
-  background-color: #FFF;
+  background-color: white;
+  font-family: Arial , sans-serif;
   margin: 0 auto;
   max-width: 768px;
-  width: 100%;
   padding: 0;
+  width: 100%;
 }
 
 .recipes-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
 }
 
-@media (min-width: 769px) {
+@media ( min-width : 769px ) {
+
   .page-container {
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
 
   .recipes-container {
-      grid-template-columns: repeat(3, 1fr);
-      justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
   }
 
   .filter-container {
