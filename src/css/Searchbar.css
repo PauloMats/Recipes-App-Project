@@ -1,4 +1,4 @@
-div [data-testid = 'searchBar'] {
+div[data-testid = 'searchBar'] {
   background-color: #41197f;
   margin: 10px;
   border-radius: 10px;
@@ -11,7 +11,7 @@ div [data-testid = 'searchBar'] {
   margin: 0 auto;
 } */
 
-input [type = 'text'] {
+input[type = 'text'] {
   border-radius: 10px;
   border-style:groove;
   box-sizing: border-box;
@@ -29,7 +29,7 @@ label {
 
 }
 
-label input [type = 'radio'] {
+label input[type = 'radio'] {
   margin-right: 5px;
 }
 
@@ -37,7 +37,7 @@ div label {
   color: white;
 }
 
-button [data-testid = 'exec-search-btn'] {
+button[data-testid = 'exec-search-btn'] {
   background-color: #FCC436;
   border: none;
   border-radius: 5px;
