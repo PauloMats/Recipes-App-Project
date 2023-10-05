@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import FavoriteCard from '../../components/FavoriteCard';
-import '../../css/FavoriteRecipes.css';
+import '../css/FavoriteRecipes.css';
+import FavoriteCard from '../components/FavoriteCard';
 
 function FavoriteRecipes() {
   const [favorite, setFavorite] = useState([]);
@@ -41,8 +41,8 @@ function FavoriteRecipes() {
   };
 
   return (
-    <div className="page-container">
-      <div className="filter-container">
+    <div className="favorite-page-container">
+      <div className="favorite-filter-container">
         <button
           data-testid="filter-by-all-btn"
           onClick={ () => setFilter('All') }

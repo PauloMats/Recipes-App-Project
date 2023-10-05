@@ -2,9 +2,10 @@
   display: flex;
   flex-direction: column;
   background-color: #FFF;
+  border: 1px solid #E1E1E1;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 0;
 }
 
 .recipe-card-container img {
@@ -12,11 +13,16 @@
   display: block;
 }
 
-.recipe-card-container span {
+.recipe-card-container .recipe-name-s span {
   display: block;
   padding: 10px;
   text-align: center;
   background-color: #F5F5F5;
+}
+
+.recipe-card-container .recipe-name-s {
+  padding-top: 10px;
+  text-align: center;
 }
 
 @media (min-width: 641px) {

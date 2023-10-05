@@ -1,71 +1,60 @@
-.card-container {
+.favorite-card-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #ffffff;
+  margin: 10px 0;
+  background-color: #fff;
   border: 1px solid #E1E1E1;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  padding: 0 25px 0 0;
+  border-radius: 10px;
+  padding: 0;
 }
 
-.info-container {
-  width: 50%;
-}
-
-.card-container img {
-  width: 100%;
+.favorite-card-container img {
+  height: 100%;
+  border-radius: 10px;
   object-fit: cover;
-  height: auto;
-  border-radius: 8px 0 0 8px;
-  margin-right: 10px;
 }
 
-.name-container {
-  flex: 1;
+.fav-info-container {
+  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  background-color: #ffffff;
-  margin: 0;
+  margin-left: 15px;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.name-container a, 
-.name-container a:visited {
-  text-decoration: none;
-  color: inherit;
-}
-
-.name-container .fav-name {
-  font-weight: bold;
-  color: #333;
+.fav-name-container {
   padding: 0;
-}
-
-.name-container .fav-info{
-  color: #797D86;
-  padding: 0;
-}
-
-.button-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
 }
 
-button {
+.fav-name {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.fav-info {
+  font-size: 14px;
+  color: #777;
+}
+
+.fav-button-container {
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fav-button-container button {
   background: none;
   border: none;
+  margin-left: 10px;
   cursor: pointer;
-  padding: 25px 5px 0 5px;
 }
 
-.card-container .button-container button img {
-  width: 30px;
-  margin: 0;
-}
-
-.card-container .name-container span {
-  background-color: white;
+.fav-button-container button img {
+  width: 25px;
+  height: 25px;
 }

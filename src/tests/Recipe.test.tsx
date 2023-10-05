@@ -1,6 +1,6 @@
 import { fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import Recipes from '../Pages/pages/Recipes';
+import Recipes from '../Pages/Recipes';
 import renderWithRouter from '../Helper/renderWihtRouter';
 import CategoryFilter from '../components/CategoryFilter';
 import RecipeCard from '../components/RecipeCard';

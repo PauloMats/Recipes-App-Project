@@ -1,0 +1,78 @@
+.profile-wrapper {
+  margin: 20px;
+  text-align: center;
+}
+
+.profile-wrapper h1 {
+  color: rgba(65, 25, 127, 1);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.profile-wrapper label {
+  font-weight: 700;
+}
+
+.profile-wrapper span {
+  color: rgba(252, 196, 54, 1);
+  font-weight: 600;
+}
+
+.profile-wrapper button {
+  background-color: #fcc436;
+  border: none;
+  border-radius: 38.69px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  height: 38.69px;
+  line-height: 38.69px;
+  margin: 10px auto;
+  opacity: 1;
+  padding: 0;
+  text-align: center;
+  width: 217.44px;
+}
+
+.profile-wrapper button:hover {
+  background-color: #d3a22e;
+  opacity: 0.8;
+}
+
+/* section {
+  display: grid;
+  gap:50px;
+  grid: repeat(4, 1fr) / 1fr;
+  height: 60vh;
+  padding: 0 15px;
+  width: 100%;
+}
+
+section > p {
+  font-size: 1.75rem;
+  font-weight: 600;
+  place-self: center;
+}
+
+button {
+  background-color: #797d86;
+  border: none;
+  color: white;
+  display: inline-block;
+  font-size: 16px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+}
+
+@media screen and ( min-width : 768px ) {
+
+  section {
+    grid: repeat(2, 1fr) / repeat(3, 1fr);
+  }
+
+  section > p {
+    font-size: 2.5rem;
+    grid-column: span 3;
+  }
+} */

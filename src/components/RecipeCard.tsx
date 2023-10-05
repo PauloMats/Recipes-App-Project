@@ -23,7 +23,7 @@ function RecipeCard({ recipe, index }: RecipeCardProps) {
           alt={ recipeName }
           data-testid={ `${index}-card-img` }
         />
-        <span data-testid={ `${index}-card-name` }>
+        <span className="recipe-name-s" data-testid={ `${index}-card-name` }>
           {recipeName}
         </span>
       </div>

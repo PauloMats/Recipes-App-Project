@@ -1,7 +1,7 @@
 .done-page-container {
   max-width: 768px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0;
 }
 
 .done-filter-container {
@@ -26,7 +26,9 @@
 
 .done-card-container {
   background-color: white;
+  border: 1px solid #E1E1E1;
   border-radius: 10px;
+  padding: 0;
 }
 
 .done-card-container img {
@@ -41,12 +43,14 @@
   display: flex;
   gap: 15px;
   align-items: center;
+  padding: 0;
 }
 
 .col-container {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  padding: 0 20px 0 0; 
 }
 
 .col-container p {
@@ -77,7 +81,7 @@
   right: 10px;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 0 5px 0 0; 
   cursor: pointer;
 }
 

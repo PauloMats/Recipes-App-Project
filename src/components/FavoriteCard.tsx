@@ -19,7 +19,7 @@ function FavoriteCard(
   const linkPath = `/${type}s/${id}`;
 
   return (
-    <div className="card-container">
+    <div className="favorite-card-container">
       <Link to={ linkPath }>
         <img
           src={ image }
@@ -28,8 +28,8 @@ function FavoriteCard(
           style={ { width: '150px' } }
         />
       </Link>
-      <div className="info-container">
-        <div className="name-container">
+      <div className="fav-info-container">
+        <div className="fav-name-container">
           <Link to={ linkPath }>
             <span
               className="fav-name"
@@ -45,7 +45,7 @@ function FavoriteCard(
             {`${nationality || ''} - ${category} - ${alcoholicOrNot || ''}`}
           </span>
         </div>
-        <div className="button-container">
+        <div className="fav-button-container">
           <button onClick={ handleShare }>
             <img
               src={ share }

@@ -1,10 +1,10 @@
 import { useLocation } from 'react-router-dom';
 import { useCallback, useState } from 'react';
-import RecipeCard from '../../components/RecipeCard';
-import CategoryFilter from '../../components/CategoryFilter';
-import useFetchRecipes from '../../Hooks/useFetchRecipes';
-import Footer from '../../components/Footer';
-import '../../css/Recipes.css';
+import CategoryFilter from '../components/CategoryFilter';
+import RecipeCard from '../components/RecipeCard';
+import Footer from '../components/Footer';
+import useFetchRecipes from '../Hooks/useFetchRecipes';
+import '../css/Recipes.css';
 
 function Recipes() {
   const { pathname } = useLocation();

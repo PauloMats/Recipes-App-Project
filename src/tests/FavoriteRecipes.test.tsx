@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import FavoriteRecipes from '../Pages/pages/FavoriteRecipes';
+import FavoriteRecipes from '../Pages/FavoriteRecipes';
 import FavoriteCard from '../components/FavoriteCard';
 
 const mockRecipe = {

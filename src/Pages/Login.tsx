@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../css/Login.css';
-import tomate from '../../images/tomate.svg';
-import recipeLogo from '../../images/logo Recipes App.svg';
+import '../css/Login.css';
+import tomate from '../images/tomate.svg';
+import recipeLogo from '../images/logo Recipes App.svg';
 
 function Login() {
   const [email, setEmail] = useState('');
