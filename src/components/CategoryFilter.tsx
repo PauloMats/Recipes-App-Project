@@ -31,7 +31,6 @@ function CategoryFilter({ onCategorySelect, type }: Props) {
       } else {
         endpoint = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list';
       }
-
       try {
         const response = await fetch(endpoint);
         const data = await response.json();
