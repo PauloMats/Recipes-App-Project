@@ -21,6 +21,7 @@
 }
 
 .recipe-card-container .recipe-name-s {
+  font-family: Tahoma , Geneva , Verdana , sans-serif;
   padding-top: 10px;
   text-align: center;
 }

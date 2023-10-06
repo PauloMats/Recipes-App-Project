@@ -9,7 +9,6 @@ type Props = {
 function CategoryFilter({ onCategorySelect, type }: Props) {
   const [categories, setCategories] = useState<string[]>([]);
   const [toggle, setToggle] = useState<string | null>(null);
-
   useEffect(() => {
     const fetchCategories = async () => {
       let endpoint: string;
