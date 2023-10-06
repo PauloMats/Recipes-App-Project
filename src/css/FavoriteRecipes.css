@@ -9,21 +9,31 @@
 
 .favorite-filter-container {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   margin-bottom: 20px;
   width: 100%;
 }
 
 .favorite-filter-container button {
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
+  background-color: #fcc436;
+  border: none;
+  border-radius: 38.69px;
+  color: white;
   cursor: pointer;
-  padding: 10px;
-  transition: background-color 0.3s;
+  display: block;
+  height: 38.69px;
+  line-height: 38.69px;
+  margin: 10px auto;
+  opacity: 1;
+  padding: 0;
+  text-align: center;
+  width: 217.44px;
 }
 
-.favorite-filter-container button:active {
-  background-color: orange;
+.favorite-filter-container button:hover {
+  background-color: #d3a22e;
+  opacity: 0.8;
 }
 
 .favorites-container {
