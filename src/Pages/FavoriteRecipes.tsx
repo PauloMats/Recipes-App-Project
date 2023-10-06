@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import '../css/FavoriteRecipes.css';
 import FavoriteCard from '../components/FavoriteCard';
 
 function FavoriteRecipes() {
@@ -40,38 +41,39 @@ function FavoriteRecipes() {
   };
 
   return (
-    <div>
-      <button
-        data-testid="filter-by-all-btn"
-        onClick={ () => setFilter('All') }
-      >
-        All
-
-      </button>
-      <button
-        data-testid="filter-by-meal-btn"
-        onClick={ () => setFilter('Meal') }
-      >
-        Meals
-
-      </button>
-      <button
-        data-testid="filter-by-drink-btn"
-        onClick={ () => setFilter('Drink') }
-      >
-        Drinks
-
-      </button>
-      {filtered.map((recipe: any, index) => (
-        <FavoriteCard
-          key={ index }
-          recipe={ recipe }
-          index={ index }
-          handleShare={ () => handleShare(index, `/${recipe.type}s/${recipe.id}`) }
-          handleFavorite={ () => handleFavorite(index, recipe.id) }
-          isShare={ isShare[index] }
-        />
-      ))}
+    <div className="favorite-page-container">
+      <div className="favorite-filter-container">
+        <button
+          data-testid="filter-by-all-btn"
+          onClick={ () => setFilter('All') }
+        >
+          All
+        </button>
+        <button
+          data-testid="filter-by-meal-btn"
+          onClick={ () => setFilter('Meal') }
+        >
+          Meals
+        </button>
+        <button
+          data-testid="filter-by-drink-btn"
+          onClick={ () => setFilter('Drink') }
+        >
+          Drinks
+        </button>
+      </div>
+      <div className="favorites-container">
+        {filtered.map((recipe: any, index) => (
+          <FavoriteCard
+            key={ index }
+            recipe={ recipe }
+            index={ index }
+            handleShare={ () => handleShare(index, `/${recipe.type}s/${recipe.id}`) }
+            handleFavorite={ () => handleFavorite(index, recipe.id) }
+            isShare={ isShare[index] }
+          />
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,0 +1,40 @@
+.favorite-page-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 768px;
+  padding: 20px;
+}
+
+.favorite-filter-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.favorite-filter-container button {
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.favorite-filter-container button:active {
+  background-color: orange;
+}
+
+.favorites-container {
+  width: 100%;
+}
+
+@media screen and ( min-width : 769px ) {
+
+  .favorite-page-container {
+    flex-flow: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

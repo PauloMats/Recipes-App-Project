@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { recipeIngredients, youtubeVideoLink } from '../../utils/recipeDetailsUtils';
 import heart from '../../images/whiteHeartIcon.svg';
 import heartFull from '../../images/blackHeartIcon.svg';
+import './index.css';
+import shareIcon from '../../images/shareIcon.svg';
 
 function RecipeDetails() {
   const { id } = useParams<{ id: string }>();
@@ -101,7 +103,15 @@ function RecipeDetails() {
           width="350px"
           height="350px"
         />
-        <button data-testid="share-btn" onClick={ handleShare }>Compartilhar</button>
+        <button
+          data-testid="share-btn"
+          onClick={ handleShare }
+        >
+          <img
+            src={ shareIcon }
+            alt="share"
+          />
+        </button>
         <button onClick={ handleFavorite }>
           <img
             data-testid="favorite-btn"
@@ -112,20 +122,28 @@ function RecipeDetails() {
         <h1
           data-testid="recipe-title"
         >
-          { isMeal ? description.strMeal : description.strDrink }
+          {isMeal ? description.strMeal : description.strDrink}
         </h1>
         <h3
           data-testid="recipe-category"
         >
-          { isMeal ? description.strCategory : description.strAlcoholic }
+          {isMeal ? description.strCategory : description.strAlcoholic}
         </h3>
-        { recipeIngredients(description).map((item, index) => (
-          <h6 key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
-            { item }
-          </h6>
-        )) }
-        <p data-testid="instructions">{ description.strInstructions }</p>
-        { isMeal && (
+        <p className="ingredients">Ingredients</p>
+        <div className="lista">
+          {recipeIngredients(description).map((item, index) => (
+            <h6
+              className="ingredients-list"
+              key={ index }
+              data-testid={ `${index}-ingredient-name-and-measure` }
+            >
+              {item}
+            </h6>
+          ))}
+        </div>
+        <p className="instructions">Instructions</p>
+        <p data-testid="instructions">{description.strInstructions}</p>
+        {isMeal && (
           <iframe
             title="YouTube Video"
             data-testid="video"
@@ -135,18 +153,19 @@ function RecipeDetails() {
           />
         )}
         <Carousel>
-          { recomendations.slice(0, 6).map((recommendation, index) => (
+          <h1 className="recommended">Recommended</h1>
+          {recomendations.slice(0, 6).map((recommendation, index) => (
             <Carousel.Item key={ index }>
               <RecommendationCard recipe={ recommendation } index={ index } />
             </Carousel.Item>
-          )) }
+          ))}
         </Carousel>
         <button
           className="footer"
           data-testid="start-recipe-btn"
           onClick={ handleButton }
         >
-          { btnStatus ? 'Continue Recipe' : 'Start Recipe' }
+          {btnStatus ? 'Continue Recipe' : 'Start Recipe'}
         </button>
       </div>
     ))
