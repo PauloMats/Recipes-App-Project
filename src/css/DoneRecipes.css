@@ -5,31 +5,31 @@
 }
 
 .done-filter-container {
-  display: flex;
+  display: block;
+  flex-direction: row;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .done-filter-container button {
-  border: 1px solid #e1e1e1;
-  border-radius: 8px;
-  cursor: pointer;
-  padding: 10px;
-  transition: background-color 0.3s;
-}
-
-.done-card-container button {
-  background: transparent;
+  background-color: #fcc436;
   border: none;
+  border-radius: 38.69px;
+  color: white;
   cursor: pointer;
-  padding: 0 5px 0 0;
-  position: absolute;
-  right: 10px;
-  top: 10px;
+  display: block;
+  height: 38.69px;
+  line-height: 38.69px;
+  margin: 10px auto;
+  opacity: 1;
+  padding: 0;
+  text-align: center;
+  width: 217.44px;
 }
 
-.done-filter-container button:active {
-  background-color: orange;
+.done-filter-container button:hover {
+  background-color: #d3a22e;
+  opacity: 0.8;
 }
 
 .dones-container {
